@@ -44,12 +44,14 @@ class CreateUsersTable extends Migration
         Schema::create('status_peserta', function(Blueprint $table){
             $table->increments('id');
             $table->string('nama');
+            $table->timestamps();
         });
 
         Schema::create('peserta', function (Blueprint $table) {
             $table->increments('id');
             $table->string('username')->unique();
             $table->string('password');
+            $table->string('fullname');
             $table->string('phone');
             $table->string('school');
             $table->string('email');
@@ -74,14 +76,17 @@ class CreateUsersTable extends Migration
         Schema::create('status_pembayaran', function(Blueprint $table){
             $table->increments('id');
             $table->string('nama');
-
+            $table->timestamps();
         });
 
-        Schema::create('tagihan_peserta', function(Blueprint $table){
+        Schema::create('data_peserta', function(Blueprint $table){
             $table->increments('id');
             $table->integer('peserta_id')->unsigned();
+            $table->string('nomor_tiket')->nullable();
             $table->string('kode_pembayaran');
             $table->double('total_pembayaran');
+            $table->string('bukti')->nullable();
+            $table->integer('jenis_tiket_id')->unsigned();
             $table->integer('status_pembayaran_id')->unsigned();
             $table->date('tanggal_konfirmasi')->nullable();
             $table->string('panitia_konfirmasi')->nullable();
@@ -89,36 +94,7 @@ class CreateUsersTable extends Migration
 
             $table->foreign('status_pembayaran_id')->references('id')->on('status_pembayaran')->ondelete('cascade');
             $table->foreign('peserta_id')->references('id')->on('peserta')->ondelete('cascade');
-        });
-
-        Schema::create('data_peserta_tryout', function(Blueprint $table){
-            $table->increments('id');
-            $table->string('kode_tiket_id')->nullable();
-            $table->integer('peserta_id')->unsigned();
-            $table->integer('tagihan_peserta_id')->unsigned();
-            $table->integer('jenis_tiket_id')->unsigned();
-            $table->timestamps();
-
-            $table->foreign('kode_tiket_id')->references('id')->on('kode_tiket')->ondelete('cascade');
-            $table->foreign('peserta_id')->references('id')->on('peserta')->ondelete('cascade');
-            $table->foreign('tagihan_peserta_id')->references('id')->on('tagihan_peserta')->ondelete('cascade');
             $table->foreign('jenis_tiket_id')->references('id')->on('jenis_tiket')->ondelete('cascade');
-
-        });
-
-        Schema::create('data_peserta_expo', function(Blueprint $table){
-            $table->increments('id');
-            $table->string('kode_tiket_id')->nullable();
-            $table->integer('peserta_id')->unsigned();
-            $table->integer('tagihan_peserta_id')->unsigned();
-            $table->integer('jenis_tiket_id')->unsigned();
-            $table->timestamps();
-
-            $table->foreign('kode_tiket_id')->references('id')->on('kode_tiket')->ondelete('cascade');
-            $table->foreign('peserta_id')->references('id')->on('peserta')->ondelete('cascade');
-            $table->foreign('tagihan_peserta_id')->references('id')->on('tagihan_peserta')->ondelete('cascade');
-            $table->foreign('jenis_tiket_id')->references('id')->on('jenis_tiket')->ondelete('cascade');
-
         });
 
         Schema::create('peserta_program_studi', function(Blueprint $table){
@@ -141,6 +117,15 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('kategori');
+        Schema::dropIfExists('universitas');
+        Schema::dropIfExists('program_studi');
+        Schema::dropIfExists('status_peserta');
+        Schema::dropIfExists('peserta');
+        Schema::dropIfExists('jenis_tiket');
+        Schema::dropIfExists('status_pembayaran');
+        Schema::dropIfExists('tagihan_peserta');
+        Schema::dropIfExists('data_peserta');
+        Schema::dropIfExists('peserta_program_studi');
     }
 }

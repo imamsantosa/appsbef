@@ -36,15 +36,21 @@ return [
     */
 
     'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
+//        'web' => [
+//            'driver' => 'session',
+//            'provider' => 'users',
+//        ],
 
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+        'peserta' => [
+            'driver' => 'session',
+            'provider' => 'peserta'
+        ],
+
     ],
 
     /*
@@ -65,11 +71,19 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\User::class,
-        ],
+//        'users' => [
+//            'driver' => 'eloquent',
+//            'model' => App\User::class,
+//        ],
 
+        'peserta' => [
+            'driver' => 'eloquent',
+            'model' => App\Peserta::class,
+        ],
+//
+//        'panitia' => [
+//
+//        ]
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
