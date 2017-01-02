@@ -130,25 +130,28 @@
 @endsection
 
 @section('additional-footer')
+    {{--<script>--}}
+        {{--$(document).ready(function(){--}}
+            {{--function readURL(input) {--}}
+
+                {{--if (input.files && input.files[0]) {--}}
+                    {{--var reader = new FileReader();--}}
+
+                    {{--reader.onload = function (e) {--}}
+                        {{--$('#preview').attr('src', e.target.result);--}}
+                    {{--}--}}
+
+                    {{--reader.readAsDataURL(input.files[0]);--}}
+                {{--}--}}
+            {{--}--}}
+
+            {{--$("#bukti").change(function(){--}}
+                {{--readURL(this);--}}
+                {{--$('#preview').show();--}}
+            {{--});--}}
+        {{--});--}}
+    {{--</script>--}}
     <script type="application/javascript">
-        $(document).ready(function(){
-            function readURL(input) {
-
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-
-                    reader.onload = function (e) {
-                        $('#preview').attr('src', e.target.result);
-                    }
-
-                    reader.readAsDataURL(input.files[0]);
-                }
-            }
-
-            $("#bukti").change(function(){
-                readURL(this);
-                $('#preview').show();
-            });
-        });
+        $(document).ready(function(){function a(a){if(a.files&&a.files[0]){var b=new FileReader;b.onload=function(a){$("#preview").attr("src",a.target.result)},b.readAsDataURL(a.files[0])}}$("#bukti").change(function(){a(this),$("#preview").show()})});
     </script>
 @endsection

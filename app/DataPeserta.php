@@ -20,4 +20,9 @@ class DataPeserta extends Model
     {
         return $this->belongsTo(StatusPembayaran::class);
     }
+
+    public function peserta()
+    {
+        return $this->belongsTo(Peserta::class);
+    }
 }

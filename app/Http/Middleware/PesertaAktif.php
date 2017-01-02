@@ -22,7 +22,7 @@ class PesertaAktif
         }
 
         if($status == 2){
-            dd('h');
+//            dd('h');
 
             return redirect()->route('peserta_konfirmasi_pembayaran');
         }

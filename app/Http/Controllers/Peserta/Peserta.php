@@ -21,4 +21,6 @@ class Peserta extends Controller
 
         return response(Storage::get($pathimage), 200)->header('Content-Type', 'image/jpeg');
     }
+
+    
 }

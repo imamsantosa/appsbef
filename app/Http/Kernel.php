@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AuthPanitia;
 use App\Http\Middleware\AuthPeserta;
 use App\Http\Middleware\PesertaAktif;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -51,6 +52,7 @@ class Kernel extends HttpKernel
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.peserta' => AuthPeserta::class,
+        'auth.panitia' => AuthPanitia::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,

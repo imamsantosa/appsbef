@@ -88,7 +88,7 @@ class CreateUsersTable extends Migration
             $table->string('bukti')->nullable();
             $table->integer('jenis_tiket_id')->unsigned();
             $table->integer('status_pembayaran_id')->unsigned();
-            $table->date('tanggal_konfirmasi')->nullable();
+            $table->dateTime('tanggal_konfirmasi')->nullable();
             $table->string('panitia_konfirmasi')->nullable();
             $table->timestamps();
 

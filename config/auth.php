@@ -48,9 +48,13 @@ return [
 
         'peserta' => [
             'driver' => 'session',
-            'provider' => 'peserta'
+            'provider' => 'peserta',
         ],
 
+        'panitia' => [
+            'driver' => 'session',
+            'provider' => 'panitia',
+        ],
     ],
 
     /*
@@ -81,9 +85,10 @@ return [
             'model' => App\Peserta::class,
         ],
 //
-//        'panitia' => [
-//
-//        ]
+        'panitia' => [
+            'driver' => 'eloquent',
+            'model' => \App\Panitia::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
