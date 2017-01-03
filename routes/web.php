@@ -13,7 +13,7 @@
 
 Route::get('/', ['uses' => 'Index@index', 'as' => 'index']);
 
-Route::group(['namespace' => 'peserta'], function(){
+Route::group(['namespace' => 'Peserta'], function(){
     Route::post('auth/register', ['uses' => 'AuthenticactionPeserta@register', 'as' => 'peserta_register']);
     Route::post('auth/login', ['uses' => 'AuthenticactionPeserta@login', 'as' => 'peserta_login']);
     Route::get('auth/logout', ['uses' => 'AuthenticactionPeserta@logout', 'as' => 'peserta_logout']);
