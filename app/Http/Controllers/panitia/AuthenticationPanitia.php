@@ -31,9 +31,9 @@ class AuthenticationPanitia extends Controller
          $recaptcha = json_decode($recaptcha, true);
          if (!$recaptcha['success']) {
              return redirect()
-                 ->route('index', compact('is_registration'))
+                 ->route('panitia_login')
                  ->with([
-                     'status' => 'danger',
+                     'status-login' => 'danger',
                      'message' => 'Terjadi Kesalahan. Silahkan isi data dan klik pastikan anda bukan robot!'
                  ]);
          }
