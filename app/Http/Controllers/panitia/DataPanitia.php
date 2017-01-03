@@ -97,7 +97,7 @@ class DataPanitia extends Controller
 
         $newdata = Panitia::create([
             'username' => $request->input('username'),
-            'password' => bcrypt($request->input('username')),
+            'password' => bcrypt($request->input('password')),
             'fullname' => $request->input('fullname'),
             'nomor_telepon' => $request->input('nomor_telepon'),
             'panlok_id' => $request->input('panlok'),
