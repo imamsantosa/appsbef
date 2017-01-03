@@ -40,7 +40,7 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label >Username</label>
-                                <input type="text" name="username" class="form-control" placeholder="Enter email" required="required">
+                                <input type="text" name="username" class="form-control" placeholder="Enter Username" required="required">
                             </div>
                             <div class="form-group">
                                 <label >Password</label>

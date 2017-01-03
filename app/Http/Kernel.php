@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\AuthPanitia;
 use App\Http\Middleware\AuthPeserta;
+use App\Http\Middleware\PanitiaAdmin;
 use App\Http\Middleware\PesertaAktif;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -58,6 +59,7 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'peserta.aktif' => PesertaAktif::class,
+        'panitia.admin' => PanitiaAdmin::class,
 
     ];
 }

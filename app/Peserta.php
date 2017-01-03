@@ -27,6 +27,11 @@ class Peserta extends Authenticatable
         return $this->hasOne(DataPeserta::class, 'peserta_id');
     }
 
+    public function pilihanUniversitas()
+    {
+        return $this->hasMany(PesertaProgramStudi::class, 'peserta_id')->orderBy('urutan', 'asc');
+    }
+
     public function comparePassword($password)
     {
         return Hash::check($password, $this->password);

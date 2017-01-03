@@ -75,7 +75,7 @@
                 <tr>
                     <td>Panitia Lokal</td>
                     <td>:</td>
-                    <td>Utara / Selatan</td>
+                    <td>{{auth('peserta')->user()->dataPeserta->panlok->nama}}</td>
                 </tr>
                 <tr>
                     <td>Tanggal Ujian</td>
@@ -92,7 +92,22 @@
                     <td>:</td>
                     <td>SMA Negeri 1 Brebes (jalan bla bla bla)</td>
                 </tr>
+                <tr>
+                    <td colspan="4">
+                    @if(auth('peserta')->user()->dataPeserta->jenis_tiket_id != 4)
+                        @foreach(auth('peserta')->user()->pilihanUniversitas as $d)
+                            {{$d->urutan}}. {{$d->programStudi->kode}} - {{$d->programStudi->nama}} - {{$d->programStudi->universitas->nama}}
+                            <br>
+                        @endforeach
+                    @else
+                        Expo Universitas
+                    @endif
+                    </td>
+                </tr>
             </table>
+            <div class="col-xs-12 text-center">
+                <h6><strong>Jadilah seorang ksatria - anonim</strong></h6>
+            </div>
         </div>
 
     </div>

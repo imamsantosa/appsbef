@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Peserta;
 
 use App\Panlok;
+use App\PesertaProgramStudi;
+use App\ProgramStudi;
 use Illuminate\Support\Facades\Storage;
 use Validator;
 use App\DataPeserta;
@@ -195,5 +197,65 @@ class Pendaftaran extends Controller
         $pathimage = 'bukti_pembayaran/'.$url;
 
         return response(Storage::get($pathimage), 200)->header('Content-Type', 'image/jpeg');
+    }
+
+    public function getProdi(Request $request)
+    {
+        $iduniv = $request->input('univ');
+        $jenisTiket = auth('peserta')->user()->dataPeserta->jenis_tiket_id;
+
+        if($jenisTiket == 1){
+            $datas = ProgramStudi::where(['universitas_id'=> $iduniv, 'kategori_id' => 2])->get();
+        } else if($jenisTiket == 2)
+        {
+            $datas = ProgramStudi::where(['universitas_id'=> $iduniv, 'kategori_id' => 1])->get();
+        } else {
+            $datas = ProgramStudi::where(['universitas_id'=> $iduniv])->get();
+
+        }
+
+        $response = [];
+        $response['options'] = $datas->map(function($data) {
+            return [
+                'value' => $data->id,
+                'text' => $data->kode .' - '. $data->nama,
+            ];
+        });
+
+        return response()->json($response);
+    }
+
+    public function pilihUnivProses(Request $request)
+    {
+
+        $univ = $request->input('univ');
+        $prodi = $request->input('jurusan');
+
+        if($univ[1] == '-'){
+            return redirect()
+                ->route('peserta_home');
+        }
+
+        for($i=1; $i<=3; $i++){
+            if($univ[$i] != '-'){
+                PesertaProgramStudi::create([
+                    'peserta_id' => auth('peserta')->user()->id,
+                    'program_studi_id' => $prodi[$i],
+                    'urutan' => $i,
+                ]);
+            }
+        }
+
+        auth('peserta')->user()->update([
+            'status_peserta_id' => 4
+        ]);
+
+        return redirect()
+            ->route('peserta_home')
+            ->with([
+                'status' => 'success',
+                'message' => 'Berhasil Menyimpan universitas'
+            ]);
+
     }
 }

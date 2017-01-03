@@ -34,8 +34,19 @@ Route::group(['namespace' => 'peserta'], function(){
         Route::get('upload-foto', ['uses' => 'Peserta@uploadFoto', 'as' => 'peserta_upload_foto']);
         Route::post('upload-foto', ['uses' => 'Peserta@uploadFotoProses', 'as' => 'peserta_upload_foto_proses']);
 
-        Route::get('cetak-tiket', ['uses' => 'Peserta@cetakTiket', 'as' => 'peserta_cetak_tiket', 'middleware' => ['peserta.aktif']]);
+//        Route::get('pilih-univ', ['uses' => 'Pendaftaran@pilihUniv', 'as' => 'peserta_pilih_univ']);
+        Route::post('pilih-univ-proses', ['uses' => 'Pendaftaran@pilihUnivProses', 'as' => 'peserta_pilih_univ_proses']);
+        Route::post('get-prodi', ['uses' => 'Pendaftaran@getProdi', 'as' => 'peserta_pilih_prodi']);
 
+
+        Route::get('profile', ['uses' => 'Peserta@profile', 'as' => 'peserta_profile']);
+        Route::post('profile/upload-foto', ['uses' => 'Peserta@uploadFotoProses', 'as' => 'peserta_upload_foto']);
+        Route::post('profile/update-biodata', ['uses' => 'Peserta@updateBiodata', 'as' => 'peserta_update_biodata']);
+        Route::post('profile/ganti-password', ['uses' => 'Peserta@changePassword', 'as' => 'peserta_ganti_password']);
+
+
+        //aktif
+        Route::get('cetak-tiket', ['uses' => 'Peserta@cetakTiket', 'as' => 'peserta_cetak_tiket', 'middleware' => ['peserta.aktif']]);
         Route::get('home', ['uses' => 'Peserta@home', 'as' => 'peserta_home', 'middleware' => ['peserta.aktif']]);
     });
 
@@ -54,12 +65,12 @@ Route::group(['namespace' => 'panitia', 'prefix' => 'panitia'], function(){
 
         //route data-peserta
         Route::get('data-peserta/all', ['uses' => 'DataPeserta@aktif', 'as' => 'panitia_data_peserta_aktif']);
-        Route::get('data-peserta/verifikasi', ['uses' => 'DataPeserta@verifikasi', 'as' => 'panitia_data_peserta_verifikasi']);
-        Route::get('data-peserta/rekap', ['uses' => 'DataPeserta@rekap', 'as' => 'panitia_data_peserta_rekap']);
+        Route::get('data-peserta/verifikasi', ['uses' => 'DataPeserta@verifikasi', 'as' => 'panitia_data_peserta_verifikasi', 'middleware' => ['panitia.admin']]);
+        Route::get('data-peserta/rekap', ['uses' => 'DataPeserta@rekap', 'as' => 'panitia_data_peserta_rekap', 'middleware' => ['panitia.admin']]);
 
         //route data panitia
         Route::get('data-panitia/all', ['uses' => 'DataPanitia@all', 'as' => 'panitia_data_panitia_semua']);
-        Route::get('data-panitia/create', ['uses' => 'DataPanitia@create', 'as' => 'panitia_data_panitia_create']);
+        Route::get('data-panitia/create', ['uses' => 'DataPanitia@create', 'as' => 'panitia_data_panitia_create', 'middleware' => ['panitia.admin']]);
         Route::post('data-panitia/create-proses', ['uses' => 'DataPanitia@createProses', 'as' => 'panitia_data_panitia_create_proses']);
 
         Route::get('bukti-pembayaran/{filename}', ['uses' => 'DataPeserta@buktiPembayaran', 'as' => 'panitia_data_peserta_bukti']);
@@ -74,9 +85,22 @@ Route::group(['namespace' => 'panitia', 'prefix' => 'panitia'], function(){
         Route::post('profile/upload-foto', ['uses' => 'Panitia@uploadFoto', 'as' => 'panitia_upload_foto']);
         Route::post('profile/update-biodata', ['uses' => 'Panitia@updateBiodata', 'as' => 'panitia_update_biodata']);
         Route::post('profile/ganti-password', ['uses' => 'Panitia@changePassword', 'as' => 'panitia_ganti_password']);
+        
+        
+        Route::get('data-expo', ['uses' => 'DataExpo@index', 'as' => 'panitia_data_expo']);
+        Route::get('data-expo/create', ['uses' => 'DataExpo@create', 'as' => 'panitia_data_expo_create']);
+        Route::post('data-expo/create', ['uses' => 'DataExpo@createProcess', 'as' => 'panitia_data_expo_create_process']);
+        Route::get('data-expo/edit/{id}', ['uses' => 'DataExpo@edit', 'as' => 'panitia_data_expo_edit']);
+        Route::post('data-expo/edit/{id}', ['uses' => 'DataExpo@editProcess', 'as' => 'panitia_data_expo_edit_process']);
+        Route::post('data-expo/delete', ['uses' => 'DataExpo@delete', 'as' => 'panitia_data_expo_delete']);
 
         //api
         Route::post('data-peserta/list-data', ['uses' => 'DataPeserta@dataAll', 'as' => 'panitia_data_peserta_all']);
         Route::post('data-panitia/list-data', ['uses' => 'DataPanitia@dataAll', 'as' => 'panitia_data_panitia_all']);
+        Route::post('data-expo/list-data', ['uses' => 'DataExpo@dataAll', 'as' => 'panitia_data_expo_all']);
     });
 });
+
+
+//Route::get('export', ['uses' => 'Export@index']);
+//Route::post('export/upload', ['uses' => 'Export@process', 'as' => 'ExportProcess']);

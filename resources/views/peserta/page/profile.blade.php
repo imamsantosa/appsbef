@@ -1,4 +1,4 @@
-@extends('panitia.template', ['dashboard' => true])
+@extends('peserta.template', ['dashboard' => true])
 
 @section('title')
     Profile
@@ -14,7 +14,7 @@
         <small>Profile</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{route('panitia_home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{route('peserta_home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Profile</li>
     </ol>
 @endsection
@@ -24,13 +24,12 @@
         <div class="col-md-4">
             <div class="box box-primary">
                 <div class="box-body box-profile">
-                    <img class="profile-user-img img-responsive img-circle" src="{{route('panitia_photo_profile')}}" alt="User profile picture">
+                    <img class="profile-user-img img-responsive img-circle" src="{{route('peserta_photo_profile')}}" alt="User profile picture">
 
-                    <h3 class="profile-username text-center">{{auth('panitia')->user()->username}}</h3>
-                    <h3 class="profile-username text-center">{{auth('panitia')->user()->fullname}}</h3>
+                    <h3 class="profile-username text-center">{{auth('peserta')->user()->username}}</h3>
+                    <h3 class="profile-username text-center">{{auth('peserta')->user()->fullname}}</h3>
+                    <h3 class="profile-username text-center">{{auth('peserta')->user()->school}}</h3>
 
-                    <p class="text-muted text-center">{{auth('panitia')->user()->role->nama}}</p>
-                    <p class="text-muted text-center">{{auth('panitia')->user()->panlok->nama}}</p>
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -60,20 +59,20 @@
                             </div>
                         @endif
                         <br>
-                        <form role="form" method="POST" action="{{route('panitia_update_biodata')}}">
+                        <form role="form" method="POST" action="{{route('peserta_update_biodata')}}">
                             {{csrf_field()}}
                             <div class="box-body">
                                 <div class="form-group">
                                     <label >Username</label>
-                                    <input type="email" class="form-control" disabled="disabled" value="{{auth('panitia')->user()->username}}">
+                                    <input type="email" class="form-control" disabled="disabled" value="{{auth('peserta')->user()->username}}">
                                 </div>
                                 <div class="form-group">
                                     <label >Nama Lengkap</label>
-                                    <input type="text" class="form-control" name="fullname" value="{{auth('panitia')->user()->fullname}}" placeholder="Nama Lengkap">
+                                    <input type="text" class="form-control" name="fullname" value="{{auth('peserta')->user()->fullname}}" placeholder="Nama Lengkap" required="required">
                                 </div>
                                 <div class="form-group">
                                     <label >Nomor Telepon</label>
-                                    <input type="text" class="form-control" name="nomor_telepon" value="{{auth('panitia')->user()->nomor_telepon}}" placeholder="Nama Lengkap">
+                                    <input type="text" class="form-control" name="phone" value="{{auth('peserta')->user()->phone}}" placeholder="Nama Lengkap" required="required">
                                 </div>
                                 <div class="form-group">
                                     {{--<div class="g-recaptcha" data-sitekey="6LdPMhAUAAAAAHkAvO1GZQ0aee8zOCYNO_bY1nHQ"></div>--}}
@@ -87,7 +86,7 @@
                     </div>
 
                     <div class="tab-pane" id="foto">
-                        <form method="POST" action="{{route('panitia_upload_foto')}}" enctype="multipart/form-data">
+                        <form method="POST" action="{{route('peserta_upload_foto')}}" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label>Pilih Foto</label>
@@ -104,7 +103,7 @@
                     </div>
 
                     <div class="tab-pane" id="password">
-                        <form role="form" method="POST" action="{{route('panitia_ganti_password')}}">
+                        <form role="form" method="POST" action="{{route('peserta_ganti_password')}}">
                             {{csrf_field()}}
 
                             <div class="box-body">

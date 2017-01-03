@@ -78,8 +78,16 @@ class Panitia extends Controller
 
     public function updateBiodata(Request $request)
     {
+        $this->validate($request, [
+            'fullname' => 'required',
+            'nomor_telepon' => 'required',
+        ],[
+            'required' => ':attribute harus diisi.',
+        ]);
+
         auth('panitia')->user()->update([
-           'fullname' => $request->input('fullname')
+           'fullname' => $request->input('fullname'),
+            'nomor_telepon' => $request->input('nomor_telepon')
         ]);
 
         return redirect()
@@ -115,7 +123,7 @@ class Panitia extends Controller
                     'message' => 'Password Baru tidak sama.']);
         }
 
-        auth('panitia')->user()->changePassword($request->input('password1'));
+        auth('panitia')->user()->changePassword($request->input('password'));
 
         return redirect()
             ->route('panitia_profile')

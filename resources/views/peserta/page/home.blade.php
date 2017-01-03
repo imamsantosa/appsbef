@@ -5,7 +5,8 @@
 @endsection
 
 @section('additional-header')
-
+    <meta name="csrf-token" content="{{csrf_token()}}" />
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 @endsection
 
 @section('content')
@@ -23,10 +24,9 @@
                             </div>
                             <br>
                         @endif
-                        @if(auth('peserta')->user()->dataPeserta->jenis_tiket_id != 4)
-                        <div class="alert alert-warning">
-                            Mohon maaf. untuk memilih universitas belum bisa dilakukan dikarenakan belum mendapatkan data universitas se-Indonesia. secepatnya akan kami dapatkan. terima kasih :)
-                        </div>
+
+                        @if(auth('peserta')->user()->status_peserta_id == 3)
+                                @include('peserta.partials.pilih_univ')
                         @else
                             <div class="alert alert-success">
                                 Terima Kasih telah mendaftar di Brebes Education Fair. :)
@@ -53,6 +53,15 @@
                                     <td>:</td>
                                     <td>{{auth('peserta')->user()->dataPeserta->nomorTiket()}}</td>
                                 </tr>
+                                @if(auth('peserta')->user()->dataPeserta->jenis_tiket_id != 4)
+                                    @foreach(auth('peserta')->user()->pilihanUniversitas as $d)
+                                    <tr>
+                                        <td>Pilihan {{$d->urutan}}</td>
+                                        <td>:</td>
+                                        <td>{{$d->programStudi->kode}} - {{$d->programStudi->nama}} - {{$d->programStudi->universitas->nama}}</td>
+                                    </tr>
+                                    @endforeach
+                                @endif
                             </table>
                             <a class="btn btn-primary btn-block" role="button" href="{{route('peserta_cetak_tiket')}}" target="_blank"><span class="fa fa-print"></span> Cetak Tiket</a>
                         @endif
@@ -66,4 +75,103 @@
     <div class="col-md-4">
         @include('peserta.partials.contact')
     </div>
+@endsection
+
+@section('additional-footer')
+    {{--<script type="application/javascript">--}}
+        {{--$(document).ready(function(){--}}
+            {{--$('#univ1').on('change', function(){--}}
+                {{--$.ajax({--}}
+                    {{--headers: {--}}
+                        {{--'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
+                    {{--},--}}
+                    {{--type: "POST",--}}
+                    {{--url: "{{ route('peserta_pilih_prodi') }}",--}}
+                    {{--dataType: "json",--}}
+                    {{--data: 'univ='+$(this).val(),--}}
+                    {{--success: function(data) {--}}
+                        {{--var options, index, select, option;--}}
+                        {{--select = document.getElementById('jurusan1');--}}
+                        {{--select.options.length = 0;--}}
+                        {{--options = data.options;--}}
+                        {{--select.options.add(new Option("-- Pilih Prodi --", "-"));--}}
+                        {{--for (index = 0; index < options.length; ++index) {--}}
+                            {{--option = options[index];--}}
+                            {{--select.options.add(new Option(option.text, option.value));--}}
+                        {{--}--}}
+                    {{--}--}}
+                {{--});--}}
+            {{--});--}}
+
+            {{--$('#univ2').on('change', function(){--}}
+                {{--$.ajax({--}}
+                    {{--headers: {--}}
+                        {{--'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
+                    {{--},--}}
+                    {{--type: "POST",--}}
+                    {{--url: "{{ route('peserta_pilih_prodi') }}",--}}
+                    {{--dataType: "json",--}}
+                    {{--data: 'univ='+$(this).val(),--}}
+                    {{--success: function(data) {--}}
+                        {{--var options, index, select, option;--}}
+                        {{--select = document.getElementById('jurusan2');--}}
+                        {{--select.options.length = 0;--}}
+                        {{--options = data.options;--}}
+                        {{--select.options.add(new Option("-- Pilih Prodi --", "-"));--}}
+                        {{--for (index = 0; index < options.length; ++index) {--}}
+                            {{--option = options[index];--}}
+                            {{--select.options.add(new Option(option.text, option.value));--}}
+                        {{--}--}}
+                    {{--}--}}
+                {{--});--}}
+            {{--});--}}
+
+            {{--$('#univ3').on('change', function(){--}}
+                {{--$.ajax({--}}
+                    {{--headers: {--}}
+                        {{--'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
+                    {{--},--}}
+                    {{--type: "POST",--}}
+                    {{--url: "{{ route('peserta_pilih_prodi') }}",--}}
+                    {{--dataType: "json",--}}
+                    {{--data: 'univ='+$(this).val(),--}}
+                    {{--success: function(data) {--}}
+                        {{--var options, index, select, option;--}}
+                        {{--select = document.getElementById('jurusan3');--}}
+                        {{--select.options.length = 0;--}}
+                        {{--options = data.options;--}}
+                        {{--select.options.add(new Option("-- Pilih Prodi --", "-"));--}}
+                        {{--for (index = 0; index < options.length; ++index) {--}}
+                            {{--option = options[index];--}}
+                            {{--select.options.add(new Option(option.text, option.value));--}}
+                        {{--}--}}
+                    {{--}--}}
+                {{--});--}}
+            {{--});--}}
+
+            {{--$('#isi-univ').on('submit', function(e){--}}
+                {{--if(confirm('Apakah data yang anda masukan sudah benar? setelah anda menyimpannya, anda tidak dapat merubah data universitas kembali')){--}}
+                    {{--if($('#univ1').val() ==  '-' || $('#jurusan1').val() == '-'){--}}
+                        {{--alert('anda belum memilih pilihan 1!');--}}
+                        {{--return false;--}}
+                    {{--}--}}
+                    {{--if($('#univ2').val() !=  '-' && $('#jurusan2').val() == '-'){--}}
+                        {{--alert('anda belum memilih prodi piilhan 2!');--}}
+                        {{--return false;--}}
+                    {{--}--}}
+                    {{--if($('#univ3').val() !=  '-' && $('#jurusan3').val() == '-'){--}}
+                        {{--alert('anda belum memilih prodi piilhan 3!');--}}
+                        {{--return false;--}}
+                    {{--}--}}
+                {{--} else{--}}
+                    {{--return false;--}}
+                {{--}--}}
+            {{--})--}}
+
+        {{--});--}}
+    {{--</script>--}}
+
+    <script type="application/javascript">
+        $(document).ready(function(){$("#univ1").on("change",function(){$.ajax({headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")},type:"POST",url:"{{ route('peserta_pilih_prodi') }}",dataType:"json",data:"univ="+$(this).val(),success:function(a){var b,c,d,e;for(d=document.getElementById("jurusan1"),d.options.length=0,b=a.options,d.options.add(new Option("-- Pilih Prodi --","-")),c=0;c<b.length;++c)e=b[c],d.options.add(new Option(e.text,e.value))}})}),$("#univ2").on("change",function(){$.ajax({headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")},type:"POST",url:"{{ route('peserta_pilih_prodi') }}",dataType:"json",data:"univ="+$(this).val(),success:function(a){var b,c,d,e;for(d=document.getElementById("jurusan2"),d.options.length=0,b=a.options,d.options.add(new Option("-- Pilih Prodi --","-")),c=0;c<b.length;++c)e=b[c],d.options.add(new Option(e.text,e.value))}})}),$("#univ3").on("change",function(){$.ajax({headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")},type:"POST",url:"{{ route('peserta_pilih_prodi') }}",dataType:"json",data:"univ="+$(this).val(),success:function(a){var b,c,d,e;for(d=document.getElementById("jurusan3"),d.options.length=0,b=a.options,d.options.add(new Option("-- Pilih Prodi --","-")),c=0;c<b.length;++c)e=b[c],d.options.add(new Option(e.text,e.value))}})}),$("#isi-univ").on("submit",function(a){return!!confirm("Apakah data yang anda masukan sudah benar? setelah anda menyimpannya, anda tidak dapat merubah data universitas kembali")&&("-"==$("#univ1").val()||"-"==$("#jurusan1").val()?(alert("anda belum memilih pilihan 1!"),!1):"-"!=$("#univ2").val()&&"-"==$("#jurusan2").val()?(alert("anda belum memilih prodi piilhan 2!"),!1):"-"!=$("#univ3").val()&&"-"==$("#jurusan3").val()?(alert("anda belum memilih prodi piilhan 3!"),!1):void 0)})});
+    </script>
 @endsection

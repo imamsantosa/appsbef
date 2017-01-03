@@ -31,10 +31,10 @@
                                 <p class="help-block">hanya .PNG atau .JPG atau .JPEG dengan ukuran maksimal 100kb yang dapat diunggah</p>
                             </div>
                             <div class="form-group">
-                                <img style="display: none" id="preview" src="#" class="img-responsive" alt="Bukti Pembayaran" />
+                                <img style="display: none" id="preview" src="#" class="img-responsive" alt="Foto" />
                             </div>
                             <div class="form-group">
-                                <input type="submit" class="btn btn-info btn-block" value="Upload Bukti Pembayaran">
+                                <input type="submit" class="btn btn-info btn-block" value="Upload Foto">
                             </div>
                         </form>
                     </div>

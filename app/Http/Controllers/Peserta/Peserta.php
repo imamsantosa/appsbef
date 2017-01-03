@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Peserta;
 
+use App\Universitas;
 use Illuminate\Http\Request;
 
 use Validator;
@@ -13,6 +14,11 @@ class Peserta extends Controller
 {
     public function home()
     {
+        if(auth('peserta')->user()->status_peserta_id == 3){
+            $dataUniv = Universitas::all();
+            return View('peserta/page/home', compact('dataUniv'));
+        }
+
         return View('peserta/page/home');
     }
 
@@ -69,6 +75,71 @@ class Peserta extends Controller
 
     public function cetakTiket()
     {
+        if(auth('peserta')->user()->status_peserta_id != 4){
+            return redirect()
+                ->route('peserta_home');
+        }
         return view('peserta/page/cetak_tiket');
+    }
+
+    public function profile()
+    {
+        return view('peserta/page/profile');
+    }
+
+    public function updateBiodata(Request $request)
+    {
+        $this->validate($request, [
+            'fullname' => 'required',
+            'phone' => 'required',
+        ],[
+            'required' => ':attribute harus diisi.',
+        ]);
+
+        auth('peserta')->user()->update([
+            'fullname' => $request->input('fullname'),
+            'phone' => $request->input('phone')
+        ]);
+
+        return redirect()
+            ->route('peserta_profile')
+            ->with([
+                'status' => 'success',
+                'message' => 'Berhasil memperbarui biodata.']);
+    }
+
+    public function changePassword(Request $request)
+    {
+        $this->validate($request, [
+            'password' => 'required',
+            'password1' => 'required',
+            'password2' => 'required',
+        ],[
+            'required' => ':attribute harus diisi.',
+        ]);
+
+        if( !(auth('peserta')->user()->comparePassword($request->input('password'))) ){
+            return redirect()
+                ->route('peserta_profile')
+                ->with([
+                    'status' => 'danger',
+                    'message' => 'Password lama anda salah.']);
+        }
+
+        if($request->input('password1') !== $request->input('password2')){
+            return redirect()
+                ->route('peserta_profile')
+                ->with([
+                    'status' => 'danger',
+                    'message' => 'Password Baru tidak sama.']);
+        }
+
+        auth('peserta')->user()->changePassword($request->input('password1'));
+
+        return redirect()
+            ->route('peserta_profile')
+            ->with([
+                'status' => 'success',
+                'message' => 'Password berhasil diperbarui']);
     }
 }

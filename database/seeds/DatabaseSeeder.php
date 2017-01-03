@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         
         \App\Kategori::create([
-           'nama' => 'saintek'
+           'nama' => 'Saintek'
         ]);
 
         \App\Kategori::create([
@@ -145,7 +145,7 @@ class DatabaseSeeder extends Seeder
             'config' => 'sampai selesai'
         ]);
 
-        $role = ['Super Admin', 'Pusat Data dan informasi', 'Panitia Biasa'];
+        $role = ['Super Admin', 'Pusat Data dan informasi', 'Panitia'];
 
         for($i=0;$i < count($role); $i++){
             \App\RolePanitia::create([

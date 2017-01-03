@@ -31,9 +31,9 @@
 
                 <ul class="treeview-menu">
                     <li class="{{(isset($peserta_aktif))?"active":""}}"><a href="{{route('panitia_data_peserta_aktif')}}"><i class="fa fa-circle-o"></i> Semua Peserta</a></li>
-                    <li class="{{(isset($peserta_verifikasi))?"active":""}}"><a href="{{route('panitia_data_peserta_verifikasi')}}"><i class="fa fa-circle-o"></i> Verifikasi Peserta</a></li>
                     @if(auth('panitia')->user()->role_id != 3)
-                    <li class="{{(isset($rekap))?"active":""}}"><a href="{{route('panitia_data_peserta_rekap')}}"><i class="fa fa-circle-o"></i> Rekap Peserta</a></li>
+                        <li class="{{(isset($peserta_verifikasi))?"active":""}}"><a href="{{route('panitia_data_peserta_verifikasi')}}"><i class="fa fa-circle-o"></i> Verifikasi Peserta</a></li>
+                        <li class="{{(isset($rekap))?"active":""}}"><a href="{{route('panitia_data_peserta_rekap')}}"><i class="fa fa-circle-o"></i> Rekap Peserta</a></li>
                     @endif
                 </ul>
             </li>
@@ -52,7 +52,7 @@
                 </ul>
             </li>
 
-            <li class="treeview">
+            <li class="treeview {{(isset($expo))?"active":""}}">
                 <a href="#">
                     <i class="fa fa-files-o"></i>
                     <span>Data Universitas Expo</span>
@@ -62,7 +62,7 @@
                 </a>
 
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Semua Universitas Expo</a></li>
+                    <li class="{{(isset($expo))?"active":""}}"><a href="{{route('panitia_data_expo')}}"><i class="fa fa-circle-o"></i> Semua Universitas Expo</a></li>
                 </ul>
             </li>
 

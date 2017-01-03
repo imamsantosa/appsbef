@@ -148,11 +148,11 @@ class DataPeserta extends Controller
             $data->peserta->update([
                 'status_peserta_id' => 4
             ]);
+        } else {
+            $data->peserta->update([
+                'status_peserta_id' => 3
+            ]);
         }
-
-        $data->peserta->update([
-            'status_peserta_id' => 3
-        ]);
 
         return redirect()
             ->route('panitia_data_peserta_verifikasi',['kode' => $kode, 'username' =>''])

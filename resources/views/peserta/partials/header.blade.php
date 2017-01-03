@@ -2,7 +2,7 @@
     <nav class="navbar navbar-static-top">
         <div class="container">
             <div class="navbar-header">
-                <a href="#" class="navbar-brand"><b>Brebes Education Fair</b> 2017</a>
+                <a href="{{route('peserta_home')}}" class="navbar-brand"><b>Brebes Education Fair</b> 2017</a>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
@@ -10,7 +10,10 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Expo Universitas</a></li>
 
+                </ul>
             </div>
             <div class="navbar-custom-menu">
                 @if(auth('peserta')->check())
@@ -32,7 +35,7 @@
                                 </li>
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        {{--<a href="#" class="btn btn-default btn-flat">Profile</a>--}}
+                                        <a href="{{route('peserta_profile')}}" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="{{route('peserta_logout')}}" class="btn btn-default btn-flat">Keluar</a>
