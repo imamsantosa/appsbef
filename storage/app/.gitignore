@@ -1,4 +1,6 @@
 *
 !public/
 !.gitignore
+profile/*
 !profile/default.jpg
+bukti_pembayaran/*
