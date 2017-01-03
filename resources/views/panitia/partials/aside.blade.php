@@ -8,7 +8,7 @@
             </div>
             <div class="pull-left info">
                 <p>{{auth('panitia')->user()->fullname}}</p>
-                <span>{{auth('panitia')->user()->role->nama}}</span>
+                <span>{{auth('panitia')->user()->role->nama}}</span><br>
                 <small>{{auth('panitia')->user()->panlok->nama}}</small>
             </div>
         </div>

@@ -81,6 +81,18 @@ class DataPeserta extends Controller
 
     public function resetPassword(Request $request)
     {
+        if(auth('panitia')->user()->rule_id == 3){
+            return "not authorize";
+        }
+
+        $data = Peserta::where('username', $request->input('username'))->first();
+
+        if($data == null){
+            return "not athorize";
+        }
+
+        $data->resetPassword();
+
         //do anythings
         return "Berhasil mereset password username ".$request->input('username')." menjadi \"123456\"";
     }

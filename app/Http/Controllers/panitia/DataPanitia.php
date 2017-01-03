@@ -118,4 +118,22 @@ class DataPanitia extends Controller
 
         return "sukses menghapus panitia dengan username ".$data->username;
     }
+
+    public function resetPassword(Request $request)
+    {
+        if(auth('panitia')->user()->rule_id == 3){
+            return "not authorize";
+        }
+
+        $data = Panitia::where('username', $request->input('username'))->first();
+
+        if($data == null || $data->role_id == 1){
+            return "not athorize";
+        }
+
+        $data->resetPassword();
+
+        return "Berhasil mereset password username ".$request->input('username')." menjadi \"123456\"";
+
+    }
 }
