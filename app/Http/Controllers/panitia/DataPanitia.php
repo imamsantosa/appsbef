@@ -79,6 +79,17 @@ class DataPanitia extends Controller
             'required' => ':attribute harus diisi.',
         ]);
 
+        $cek = Panitia::where('username', $request->input('username'))->count();
+
+        if($cek > 1){
+            return redirect()
+                ->route('panitia_data_panitia_semua')
+                ->with([
+                    'status' => 'danger',
+                    'message' => 'Username Telah Digunakan.'
+                ]);
+        }
+
         if($request->input('panlok') > 2 || $request->input('panlok') < 1 || $request->input('posisi') < 1 || $request->input('posisi') > 3){
             return redirect()
                 ->route('panitia_data_panitia_semua');
