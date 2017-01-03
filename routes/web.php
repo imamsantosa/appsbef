@@ -88,11 +88,14 @@ Route::group(['namespace' => 'panitia', 'prefix' => 'panitia'], function(){
         
         
         Route::get('data-expo', ['uses' => 'DataExpo@index', 'as' => 'panitia_data_expo']);
-        Route::get('data-expo/create', ['uses' => 'DataExpo@create', 'as' => 'panitia_data_expo_create']);
-        Route::post('data-expo/create', ['uses' => 'DataExpo@createProcess', 'as' => 'panitia_data_expo_create_process']);
+        Route::get('data-expo/create', ['uses' => 'DataExpo@create', 'as' => 'panitia_data_expo_create', 'middleware' => ['panitia.admin']]);
+        Route::post('data-expo/create', ['uses' => 'DataExpo@createProcess', 'as' => 'panitia_data_expo_create_process', 'middleware' => ['panitia.admin']]);
         Route::get('data-expo/edit/{id}', ['uses' => 'DataExpo@edit', 'as' => 'panitia_data_expo_edit']);
         Route::post('data-expo/edit/{id}', ['uses' => 'DataExpo@editProcess', 'as' => 'panitia_data_expo_edit_process']);
         Route::post('data-expo/delete', ['uses' => 'DataExpo@delete', 'as' => 'panitia_data_expo_delete']);
+
+        Route::get('konfigurasi', ['uses' => 'Konfigurasi@index', 'as' => 'panitia_konfigurasi']);
+        Route::post('konfigurasi/save/{panlok}', ['uses' => 'Konfigurasi@save', 'as' => 'panitia_konfigurasi_save']);
 
         //api
         Route::post('data-peserta/list-data', ['uses' => 'DataPeserta@dataAll', 'as' => 'panitia_data_peserta_all']);

@@ -92,8 +92,20 @@ class DataExpo extends Controller
             ]);
     }
 
-    public function delete()
+    public function delete(Request $request)
     {
+        if(auth('panitia')->user()->role_id == 3){
+            return "not authorize";
+        }
 
+        $data = Expo::find($request->input('id'));
+
+        if($data == null){
+            return "not authorize";
+        }
+
+        $data->delete();
+
+        return "sukses menghapus Expo";
     }
 }

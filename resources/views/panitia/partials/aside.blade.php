@@ -66,6 +66,14 @@
                 </ul>
             </li>
 
+            @if(auth('panitia')->user()->role_id != 3)
+            <li class="{{(isset($konfig))?"active":""}} treeview">
+                <a href="{{route('panitia_konfigurasi')}}">
+                    <i class="fa fa-gear"></i> <span>Konfigurasi</span>
+                </a>
+            </li>
+            @endif
+
         </ul>
     </section>
 </aside>

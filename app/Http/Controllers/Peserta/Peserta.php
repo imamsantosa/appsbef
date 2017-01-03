@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Peserta;
 
+use App\Config;
 use App\Universitas;
 use Illuminate\Http\Request;
 
@@ -79,7 +80,28 @@ class Peserta extends Controller
             return redirect()
                 ->route('peserta_home');
         }
-        return view('peserta/page/cetak_tiket');
+
+        if(auth('peserta')->user()->dataPeserta->panlok_id == 1){
+            $data = [
+                'lokasi' => Config::find(4)->config,
+                'tanggal' => Config::find(6)->config,
+
+                'jam_simulasi' => Config::find(8)->config,
+                'jam_expo'=> Config::find(9)->config,
+            ];
+        } else{
+
+            $data = [
+
+                'lokasi' => Config::find(5)->config,
+                'tanggal' => Config::find(7)->config,
+
+                'jam_simulasi' => Config::find(10)->config,
+                'jam_expo'=> Config::find(11)->config,
+            ];
+        }
+
+        return view('peserta/page/cetak_tiket', compact('data'));
     }
 
     public function profile()

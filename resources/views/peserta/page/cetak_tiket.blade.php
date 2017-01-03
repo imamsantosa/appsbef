@@ -80,17 +80,26 @@
                 <tr>
                     <td>Tanggal Ujian</td>
                     <td>:</td>
-                    <td>28 Agustus 2017</td>
+                    <td>
+                        {{$data['tanggal']}}
+                    </td>
                 </tr>
                 <tr>
                     <td>Waktu</td>
                     <td>:</td>
-                    <td>07.30 WIB - Selesai</td>
+                    <td>
+                        @if(auth('peserta')->user()->dataPeserta->jenis_tiket_id != 4)
+                            {{$data['jam_simulasi']}}
+                        @else
+                            {{$data['jam_expo']}}
+                        @endif
+                    </td>
                 </tr>
                 <tr>
                     <td>Lokasi Ujian</td>
                     <td>:</td>
-                    <td>SMA Negeri 1 Brebes (jalan bla bla bla)</td>
+                    <td>                        {{$data['lokasi']}}
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="4">

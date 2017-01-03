@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\panitia;
 
+use App\DataPeserta;
+use App\Expo;
 use Validator;
 use App\Config;
 use App\Peserta;
@@ -16,10 +18,37 @@ class Panitia extends Controller
     public function home()
     {
         $data = [
-            'total_pendaftar' => Peserta::count(),
-            'user_panitia' => \App\Panitia::count(),
-            'total_expo' => '0',
-            'status_registrasi' => Config::find(1)->config
+            'peserta_utara' => DataPeserta::where('panlok_id', 1)->count(),
+            'peserta_selatan' => DataPeserta::where('panlok_id', 2)->count(),
+
+            'panitia_utara' => \App\Panitia::where('panlok_id', 1)->count(),
+            'panitia_selatan' => \App\Panitia::where('panlok_id', 2)->count(),
+            'expo_utara' => Expo::where('utara', 1)->count(),
+            'expo_selatan' => Expo::where('selatan', 1)->count(),
+
+            'saintek_utara' => DataPeserta::where(['jenis_tiket_id' => 2,'panlok_id'=> 1])->count(),
+            'saintek_selatan' => DataPeserta::where(['jenis_tiket_id'=> 2,'panlok_id'=> 2])->count(),
+            'soshum_utara' => DataPeserta::where(['jenis_tiket_id'=> 1,'panlok_id'=> 1])->count(),
+            'soshum_selatan' => DataPeserta::where(['jenis_tiket_id'=> 1,'panlok_id'=> 2])->count(),
+            'ipc_utara' => DataPeserta::where(['jenis_tiket_id'=> 3,'panlok_id'=> 1])->count(),
+            'ipc_selatan' => DataPeserta::where(['jenis_tiket_id'=> 3,'panlok_id'=> 2])->count(),
+
+            'peserta_expo_utara' => DataPeserta::where(['jenis_tiket_id'=> 4,'panlok_id'=> 1])->count(),
+            'peserta_expo_selatan' => DataPeserta::where(['jenis_tiket_id'=> 4,'panlok_id'=> 2])->count(),
+
+            'status_registrasi_utara' => Config::find(2)->config,
+            'status_registrasi_selatan' => Config::find(3)->config,
+            'status_registrasi' => Config::find(1)->config,
+
+            'lokasi_selatan' => Config::find(5)->config,
+            'tanggal_selatan' => Config::find(7)->config,
+            'jam_simulasi_selatan' => Config::find(10)->config,
+            'jam_expo_selatan'=> Config::find(11)->config,
+
+            'lokasi_utara' => Config::find(4)->config,
+            'tanggal_utara' => Config::find(6)->config,
+            'jam_simulasi_utara' => Config::find(8)->config,
+            'jam_expo_utara'=> Config::find(9)->config,
         ];
         
         return view('panitia/page/dashboard', compact('data'));
