@@ -24,12 +24,14 @@ class Panitia extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->string('fullname');
-            $table->string('nomor_telpon');
+            $table->string('nomor_telepon');
             $table->string('photo')->default('default.jpg');
+            $table->integer('panlok_id')->unsigned();
             $table->rememberToken();
             $table->integer('role_id')->unsigned();
             $table->timestamps();
 
+            $table->foreign('panlok_id')->references('id')->on('panlok')->ondelete('cascade');
             $table->foreign('role_id')->references('id')->on('role_panitia')->onDelete('cascade');
         });
 

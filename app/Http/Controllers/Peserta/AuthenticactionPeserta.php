@@ -64,18 +64,18 @@ class AuthenticactionPeserta extends Controller
 
          $secret_key = '6LdPMhAUAAAAACt--s1jFerJZwhhIYwa88tdz8hM';
 
-//         $captcha = $request->input('g-recaptcha-response');
-//         $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secret_key) . '&response=' . $captcha;
-//         $recaptcha = file_get_contents($url);
-//         $recaptcha = json_decode($recaptcha, true);
-//         if (!$recaptcha['success']) {
-//             return redirect()
-//                 ->route('index', compact('is_registration'))
-//                 ->with([
-//                     'status' => 'danger',
-//                     'message' => 'Terjadi Kesalahan. Silahkan isi data dan klik pastikan anda bukan robot!'
-//                 ]);
-//         }
+         $captcha = $request->input('g-recaptcha-response');
+         $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secret_key) . '&response=' . $captcha;
+         $recaptcha = file_get_contents($url);
+         $recaptcha = json_decode($recaptcha, true);
+         if (!$recaptcha['success']) {
+             return redirect()
+                 ->route('index', compact('is_registration'))
+                 ->with([
+                     'status' => 'danger',
+                     'message' => 'Terjadi Kesalahan. Silahkan isi data dan klik pastikan anda bukan robot!'
+                 ]);
+         }
 
         $cek = Peserta::where('username', $request->input('username'))->count();
         if($cek > 1){

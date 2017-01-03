@@ -79,12 +79,19 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
 
+        Schema::create('panlok', function(Blueprint $table){
+            $table->increments('id');
+            $table->string('nama');
+            $table->timestamps();
+        });
+
         Schema::create('data_peserta', function(Blueprint $table){
             $table->increments('id');
             $table->integer('peserta_id')->unsigned();
             $table->string('nomor_tiket')->nullable();
             $table->string('kode_pembayaran');
             $table->double('total_pembayaran');
+            $table->integer('panlok_id')->unsigned();
             $table->string('bukti')->nullable();
             $table->integer('jenis_tiket_id')->unsigned();
             $table->integer('status_pembayaran_id')->unsigned();
@@ -92,6 +99,7 @@ class CreateUsersTable extends Migration
             $table->string('panitia_konfirmasi')->nullable();
             $table->timestamps();
 
+            $table->foreign('panlok_id')->references('id')->on('panlok')->ondelete('cascade');
             $table->foreign('status_pembayaran_id')->references('id')->on('status_pembayaran')->ondelete('cascade');
             $table->foreign('peserta_id')->references('id')->on('peserta')->ondelete('cascade');
             $table->foreign('jenis_tiket_id')->references('id')->on('jenis_tiket')->ondelete('cascade');

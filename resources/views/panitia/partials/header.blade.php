@@ -15,6 +15,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="{{route('panitia_photo_profile')}}" class="user-image" alt="User Image">
                         <span class="hidden-xs">{{auth('panitia')->user()->fullname}}</span>
+
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
@@ -23,6 +24,7 @@
                             <p>
                                 {{auth('panitia')->user()->fullname}}
                                 <small>{{auth('panitia')->user()->role->nama}}</small>
+                                <small>{{auth('panitia')->user()->panlok->nama}}</small>
                             </p>
                         </li>
                         <!-- Menu Footer-->

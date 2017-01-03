@@ -22,9 +22,11 @@ class PesertaAktif
         }
 
         if($status == 2){
-//            dd('h');
-
             return redirect()->route('peserta_konfirmasi_pembayaran');
+        }
+
+        if(auth('peserta')->user()->photo == 'default.jpg'){
+            return redirect()->route('peserta_upload_foto');
         }
 
         return $next($request);

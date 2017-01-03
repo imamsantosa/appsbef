@@ -31,6 +31,10 @@ Route::group(['namespace' => 'peserta'], function(){
         Route::post('daftar/konfirmasi-pembayaran', ['uses' => 'Pendaftaran@konfirmasiPembayaranProses', 'as' => 'peserta_konfirmasi_pembayaran_proses']);
         Route::get('daftar/konfirmasi-pembayaran/bukti/{url}', ['uses' => 'Pendaftaran@buktiPembayaranImage', 'as' => 'peserta_bukti_pembayaran_image']);
 
+        Route::get('upload-foto', ['uses' => 'Peserta@uploadFoto', 'as' => 'peserta_upload_foto']);
+        Route::post('upload-foto', ['uses' => 'Peserta@uploadFotoProses', 'as' => 'peserta_upload_foto_proses']);
+
+        Route::get('cetak-tiket', ['uses' => 'Peserta@cetakTiket', 'as' => 'peserta_cetak_tiket', 'middleware' => ['peserta.aktif']]);
 
         Route::get('home', ['uses' => 'Peserta@home', 'as' => 'peserta_home', 'middleware' => ['peserta.aktif']]);
     });
@@ -47,15 +51,32 @@ Route::group(['namespace' => 'panitia', 'prefix' => 'panitia'], function(){
     Route::group(['middleware' => 'auth.panitia'], function(){
         Route::get('photo-profil', ['uses'=>'Panitia@photoProfile', 'as' => 'panitia_photo_profile']);
         Route::get('/', ['uses' => 'Panitia@home', 'as' => 'panitia_home']);
+
+        //route data-peserta
         Route::get('data-peserta/all', ['uses' => 'DataPeserta@aktif', 'as' => 'panitia_data_peserta_aktif']);
-        
         Route::get('data-peserta/verifikasi', ['uses' => 'DataPeserta@verifikasi', 'as' => 'panitia_data_peserta_verifikasi']);
+        Route::get('data-peserta/rekap', ['uses' => 'DataPeserta@rekap', 'as' => 'panitia_data_peserta_rekap']);
+
+        //route data panitia
+        Route::get('data-panitia/all', ['uses' => 'DataPanitia@all', 'as' => 'panitia_data_panitia_semua']);
+        Route::get('data-panitia/create', ['uses' => 'DataPanitia@create', 'as' => 'panitia_data_panitia_create']);
+        Route::post('data-panitia/create-proses', ['uses' => 'DataPanitia@createProses', 'as' => 'panitia_data_panitia_create_proses']);
+
         Route::get('bukti-pembayaran/{filename}', ['uses' => 'DataPeserta@buktiPembayaran', 'as' => 'panitia_data_peserta_bukti']);
         Route::get('konfirmasi-pembayaran/{kode}', ['uses' => 'DataPeserta@verifikasiProses', 'as' => 'panitia_konfirmasi_peserta_proses']);
 
-        Route::post('reset-password', ['uses' => 'DataPeserta@resetPassword', 'as' => 'panitia_reset_password']);
+
+        Route::post('reset-password-peserta', ['uses' => 'DataPeserta@resetPassword', 'as' => 'panitia_reset_password_peserta']);
+        Route::post('reset-password-panitia', ['uses' => 'DataPanitia@resetPassword', 'as' => 'panitia_reset_password_panitia']);
+        Route::post('delete-panitia', ['uses' => 'DataPanitia@deletePanitia', 'as' => 'panitia_delete_panitia']);
+
+        Route::get('profile', ['uses' => 'Panitia@profile', 'as' => 'panitia_profile']);
+        Route::post('profile/upload-foto', ['uses' => 'Panitia@uploadFoto', 'as' => 'panitia_upload_foto']);
+        Route::post('profile/update-biodata', ['uses' => 'Panitia@updateBiodata', 'as' => 'panitia_update_biodata']);
+        Route::post('profile/ganti-password', ['uses' => 'Panitia@changePassword', 'as' => 'panitia_ganti_password']);
 
         //api
         Route::post('data-peserta/list-data', ['uses' => 'DataPeserta@dataAll', 'as' => 'panitia_data_peserta_all']);
+        Route::post('data-panitia/list-data', ['uses' => 'DataPanitia@dataAll', 'as' => 'panitia_data_panitia_all']);
     });
 });

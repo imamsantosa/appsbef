@@ -72,6 +72,7 @@ class DataPeserta extends Controller
             'nomor_tiket' => ($data->nomor_tiket == null)? "-" : $data->nomor_tiket,
             'kode_pembayaran' => $data->kode_pembayaran,
             'jenis_tiket' => $data->jenisTiket->nama,
+            'panlok' => $data->panlok->nama,
             'status_pembayaran' => $data->statusPembayaran->nama,
             'tanggal_konfirmasi' => $data->tanggal_konfirmasi,
             'panitia_konfirmasi' => $data->panitia_konfirmasi
@@ -147,6 +148,10 @@ class DataPeserta extends Controller
                 'status' => 'success',
                 'message' => 'Berhasil memverifikasi pembayaran dengan username '.$data->peserta->username
             ]);
+    }
 
+    public function rekap()
+    {
+        return view('panitia/page/rekap');
     }
 }

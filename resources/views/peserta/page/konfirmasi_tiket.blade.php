@@ -1,7 +1,7 @@
 @extends('peserta.template')
 
 @section('title')
-    Home
+    Konfirmasi Tiket
 @endsection
 
 @section('additional-header')
@@ -18,6 +18,11 @@
                 <div class="row">
                     <div class="col-md-12">
                         <table class="table table-responsive table-bordered">
+                            <tr>
+                                <td>Panitia Lokal</td>
+                                <td> : </td>
+                                <td> {{$data->panlok->nama}}</td>
+                            </tr>
                             <tr>
                                 <td>Jenis Tiket</td>
                                 <td> : </td>

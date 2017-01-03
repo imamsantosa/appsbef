@@ -65,6 +65,11 @@
                                 <td>{{$dataPencarian->jenisTiket->nama}}</td>
                             </tr>
                             <tr>
+                                <td width="30%">Panlok</td>
+                                <td width="1%">:</td>
+                                <td>{{$dataPencarian->panlok->nama}}</td>
+                            </tr>
+                            <tr>
                                 <td width="30%">Total Pembayaran</td>
                                 <td width="1%">:</td>
                                 <td>{{$dataPencarian->jenisTiket->harga()}}</td>
@@ -83,7 +88,7 @@
                             @endif
                         </table>
                         @if($dataPencarian->status_pembayaran_id != 3)
-                        <a class="btn btn-warning btn-block" href="{{route('panitia_konfirmasi_peserta_proses', ['kode' => $_GET['kode']])}}" onclick="return confirm('Apakah anda yakin akan melakukan konfirmasi pembayaran pada peserta tersebut?')">Konfirmasi Pembayaran</a>
+                        <a class="btn btn-warning btn-block" href="{{route('panitia_konfirmasi_peserta_proses', ['kode' => $dataPencarian->kode_pembayaran])}}" onclick="return confirm('Apakah anda yakin akan melakukan konfirmasi pembayaran pada peserta tersebut?')">Konfirmasi Pembayaran</a>
                         @endif
                     @endif
                 </div>

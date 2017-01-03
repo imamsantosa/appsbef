@@ -120,10 +120,6 @@
     </div>
 
     <div class="col-md-4">
-        <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">Contact Person</h3>
-            </div>
-        </div>
+        @include('peserta.partials.contact')
     </div>
 @endsection

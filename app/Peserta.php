@@ -21,4 +21,26 @@ class Peserta extends Authenticatable
     {
         return $this->belongsTo(StatusPeserta::class);
     }
+
+    public function dataPeserta()
+    {
+        return $this->hasOne(DataPeserta::class, 'peserta_id');
+    }
+
+    public function comparePassword($password)
+    {
+        return Hash::check($password, $this->password);
+    }
+
+    public function resetPassword()
+    {
+        $this->password = Hash::make("123456");
+        $this->save();
+    }
+
+    public function changePassword($new)
+    {
+        $this->password = Hash::make($new);
+        $this->save();
+    }
 }

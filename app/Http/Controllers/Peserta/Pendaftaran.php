@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Peserta;
 
+use App\Panlok;
 use Illuminate\Support\Facades\Storage;
 use Validator;
 use App\DataPeserta;
@@ -21,7 +22,8 @@ class Pendaftaran extends Controller
         }
 
         $jenisTiket = JenisTiket::where('nama', '<>', 'On The Spot')->get();
-        return View('peserta/page/pilih_tiket', compact('jenisTiket'));
+        $panlok = Panlok::all();
+        return View('peserta/page/pilih_tiket', compact('jenisTiket', 'panlok'));
     }
 
     public function pilihTiketProses(Request $request)
@@ -32,8 +34,11 @@ class Pendaftaran extends Controller
         }
 
         $jenisTiket = JenisTiket::find($request->input('jenis_tiket'));
+        $panlok = Panlok::find($request->input('panlok'));
 
-        if($jenisTiket == null){
+//        dd($panlok);
+
+        if($jenisTiket == null || $panlok == null){
             return redirect()
                 ->route('peserta_pilih_tiket');
         }
@@ -45,6 +50,7 @@ class Pendaftaran extends Controller
                 'kode_pembayaran' => $this->generateKodePembayaran($jenisTiket->id),
                 'total_pembayaran' => $jenisTiket->harga,
                 'jenis_tiket_id' => $jenisTiket->id,
+                'panlok_id' => $panlok->id,
                 'status_pembayaran_id' => 1
 
             ]);
@@ -53,6 +59,7 @@ class Pendaftaran extends Controller
                 'kode_pembayaran' => $this->generateKodePembayaran($jenisTiket->id),
                 'total_pembayaran' => $jenisTiket->harga,
                 'jenis_tiket_id' => $jenisTiket->id,
+                'panlok_id' => $panlok->id,
                 'status_pembayaran_id' => 1
             ]);
         }
