@@ -10,10 +10,13 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                @if(auth('peserta')->check())
+
                 <ul class="nav navbar-nav">
                     <li><a href="#">Expo Universitas</a></li>
 
                 </ul>
+                @endif
             </div>
             <div class="navbar-custom-menu">
                 @if(auth('peserta')->check())
