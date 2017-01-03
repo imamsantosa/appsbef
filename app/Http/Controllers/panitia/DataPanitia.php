@@ -81,7 +81,7 @@ class DataPanitia extends Controller
 
         $cek = Panitia::where('username', $request->input('username'))->count();
 
-        if($cek > 1){
+        if($cek >= 1){
             return redirect()
                 ->route('panitia_data_panitia_semua')
                 ->with([
