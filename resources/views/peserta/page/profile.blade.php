@@ -86,7 +86,7 @@
                     </div>
 
                     <div class="tab-pane" id="foto">
-                        <form method="POST" action="{{route('peserta_upload_foto')}}" enctype="multipart/form-data">
+                        <form method="POST" action="{{route('peserta_upload_foto_proses')}}" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label>Pilih Foto</label>

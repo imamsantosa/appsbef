@@ -40,7 +40,7 @@ Route::group(['namespace' => 'Peserta'], function(){
 
 
         Route::get('profile', ['uses' => 'Peserta@profile', 'as' => 'peserta_profile']);
-        Route::post('profile/upload-foto', ['uses' => 'Peserta@uploadFotoProses', 'as' => 'peserta_upload_foto']);
+        Route::post('profile/upload-foto', ['uses' => 'Peserta@uploadFotoProses', 'as' => 'peserta_upload_foto_proses']);
         Route::post('profile/update-biodata', ['uses' => 'Peserta@updateBiodata', 'as' => 'peserta_update_biodata']);
         Route::post('profile/ganti-password', ['uses' => 'Peserta@changePassword', 'as' => 'peserta_ganti_password']);
 
