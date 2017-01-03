@@ -57,7 +57,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label >Jam Kegiatan Simulasi</label>
+                                <label >Jam Kegiatan Expo</label>
                                 <input type="text" class="form-control" value="{{$data['jam_expo_utara']}}" name="jam_expo_utara" placeholder="Lokasi" required="required">
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label >Jam Kegiatan Simulasi</label>
+                                <label >Jam Kegiatan Expo</label>
                                 <input type="text" class="form-control" value="{{$data['jam_expo_selatan']}}" name="jam_expo_selatan" placeholder="Lokasi" required="required">
                             </div>
                         </div>
