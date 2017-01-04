@@ -16,7 +16,8 @@
                 <ul>
                     <li>Tomy Hariyanto</li>
                     <li>D25734D0 (BBM)</li>
-                    <li>085877154420 (Ponsel)</li>
+                    <li>@tomhary (line)</li>
+                    <li>083863604638 (Ponsel/WA)</li>
                 </ul>
 
                 <strong>Pusat Data dan Informasi Panlok Utara</strong>
@@ -29,6 +30,7 @@
                 <strong>Pusat Data dan Informasi Panlok Selatan</strong>
                 <ul>
                     <li>Nofi Purwanti</li>
+                    <li>@nofiipb52 (line)</li>
                     <li>085312605579 (Ponsel)</li>
                 </ul>
             </div>
