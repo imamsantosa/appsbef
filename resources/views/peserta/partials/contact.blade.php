@@ -13,7 +13,7 @@
                 </ul>
                 <strong>Pusat Data dan Informasi</strong>
                 <ul>
-                    <li>Hilda S. W. Sirega</li>
+                    <li>Hilda S. W. Siregar</li>
                     <li>@hildaasiregar (Line)</li>
                     <li>087830172286 (Ponsel)</li>
                 </ul>

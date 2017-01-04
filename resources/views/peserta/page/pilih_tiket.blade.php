@@ -62,7 +62,7 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <strong>Fasilitas Simulasi (Soshum/Saintek/IPC)</strong>
+                        <strong>Fasilitas Simulasi (Soshum/Saintek/IPC) Panlok Utara</strong>
                         <ul>
                             <li>Simulasi SBMPTN 2017</li>
                             <li>Snack</li>
@@ -70,12 +70,25 @@
                             <li>Expo Universitas</li>
                             <li>Aplikasi Chating dengan Mahasiswa Brebes yang berada di PTN/PT</li>
                         </ul>
-                        <strong>Fasilitas Expo</strong>
+                        <strong>Fasilitas Simulasi (Soshum/Saintek) Panlok Selatan</strong>
+                        <ul>
+                            <li>simulasi SBMPTN 2017</li>
+                            <li>Brebes Edukasi Talkshow</li>
+                            <li>Expo Kampus</li>
+                            <li>Hiburan</li>
+                            <li>Makan Siang</li>
+                            <li>Doorprize</li>
+                            <li>Hadiah dan piagam penghargaan bagi juara 1, 2, 3 nilai simulasi tertinggi.</li>
+                            <li>Aplikasi Chating dengan Mahasiswa Brebes yang berada di PTN/PT</li>
+                        </ul>
+                        <strong>Fasilitas Expo Panlok Utara</strong>
                         <ul>
                             <li>Talkshow</li>
                             <li>Expo Universitas</li>
                             <li>Aplikasi Chating dengan Mahasiswa Brebes yang berada di PTN/PT</li>
                         </ul>
+
+
                     </div>
                 </div>
             </div>
