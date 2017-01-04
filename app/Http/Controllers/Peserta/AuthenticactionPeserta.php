@@ -78,7 +78,7 @@ class AuthenticactionPeserta extends Controller
          }
 
         $cek = Peserta::where('username', $request->input('username'))->count();
-        if($cek > 1){
+        if($cek >= 1){
             return redirect()
                 ->route('index', compact('is_registration'))
                 ->with([
