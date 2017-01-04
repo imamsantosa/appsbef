@@ -142,6 +142,6 @@
 
     {{--minify--}}
     <script type="application/javascript">
-        $(document).ready(function(){$("#form-jenis-tiket").on("submit",function(){return"-"==$("#jenis_tiket").val()||"-"==$("#panlok").val()?(alert("Anda belum memilih tiket atau panitia lokal"),!1):!!confirm("Apakah tiket yang anda masukan sudah benar?")&&void 0}),$("#panlok").on("change",function(){$.ajax({headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")},type:"POST",url:"{{ route('peserta_get_tiket') }}",dataType:"json",data:"panlok="+$(this).val(),success:function(a){var b,c,d,e;for(d=document.getElementById("jenis_tiket"),d.options.length=0,b=a.options,d.options.add(new Option("-- Pilih Prodi --","-")),c=0;c<b.length;++c)e=b[c],d.options.add(new Option(e.text,e.value))}})})});
+        $(document).ready(function(){$("#form-jenis-tiket").on("submit",function(){return"-"==$("#jenis_tiket").val()||"-"==$("#panlok").val()?(alert("Anda belum memilih tiket atau panitia lokal"),!1):!!confirm("Apakah tiket yang anda masukan sudah benar?")&&void 0}),$("#panlok").on("change",function(){$.ajax({headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")},type:"POST",url:"{{ route('peserta_get_tiket') }}",dataType:"json",data:"panlok="+$(this).val(),success:function(a){var b,c,d,e;for(d=document.getElementById("jenis_tiket"),d.options.length=0,b=a.options,d.options.add(new Option("-- Pilih Tiket --","-")),c=0;c<b.length;++c)e=b[c],d.options.add(new Option(e.text,e.value))}})})});
     </script>
 @endsection
