@@ -7,13 +7,13 @@
             <div class="col-md-12">
                 <strong>Humas</strong>
                 <ul>
-                    <li>Safirudin Aycena</li>
+                    <li>Sarifudin Avycena</li>
                     <li>@kakcen (Line)</li>
                     <li>085640873967 (Ponsel)</li>
                 </ul>
                 <strong>Pusat Data dan Informasi</strong>
                 <ul>
-                    <li>Hilda</li>
+                    <li>Hilda S. W. Sirega</li>
                     <li>@hildaasiregar (Line)</li>
                     <li>087830172286 (Ponsel)</li>
                 </ul>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class JenisTiket extends Model
 {
     protected $table = 'jenis_tiket';
-    protected $fillable = ['nama', 'harga', 'kuota'];
+    protected $fillable = ['nama', 'harga','panlok_id', 'kuota'];
 
     public function sisaTiket(){
         return ($this->kuota) - ($this->hasMany(DataPeserta::class, 'jenis_tiket_id')->count());

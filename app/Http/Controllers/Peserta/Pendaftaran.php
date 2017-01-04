@@ -28,6 +28,31 @@ class Pendaftaran extends Controller
         return View('peserta/page/pilih_tiket', compact('jenisTiket', 'panlok'));
     }
 
+    public function getTiket(Request $request)
+    {
+        $idpanlok = $request->input('panlok');
+
+        $panlok = Panlok::find($idpanlok);
+
+        if($panlok == null){
+            return "unauthorize";
+        }
+
+        $datas = JenisTiket::where('panlok_id', $idpanlok)
+            ->where('id', '<>', 5)
+            ->get();
+
+        $response = [];
+        $response['options'] = $datas->map(function($data) {
+            return [
+                'value' => $data->id,
+                'text' => $data->nama .' - '. $data->harga(),
+            ];
+        });
+
+        return response()->json($response);
+    }
+
     public function pilihTiketProses(Request $request)
     {
         if(auth('peserta')->user()->status_peserta_id != 1){
@@ -37,8 +62,6 @@ class Pendaftaran extends Controller
 
         $jenisTiket = JenisTiket::find($request->input('jenis_tiket'));
         $panlok = Panlok::find($request->input('panlok'));
-
-//        dd($panlok);
 
         if($jenisTiket == null || $panlok == null){
             return redirect()
@@ -83,7 +106,10 @@ class Pendaftaran extends Controller
             $k = 'D';
         else if($jenis == 5)
             $k = 'E';
-
+        else if($jenis == 6)
+            $k = 'F';
+        else if($jenis == 7)
+            $k = 'G';
 
         $gen = $k.date('d').rand(0, 100);
         $cek = DataPeserta::where('kode_pembayaran', $gen)->count();
@@ -150,7 +176,7 @@ class Pendaftaran extends Controller
         }
 
         $validation = Validator::make($request->all(), [
-            'bukti' => 'required|max:50|mimes:jpeg,jpg,png'
+            'bukti' => 'required|max:200|mimes:jpeg,jpg,png'
         ]);
 
         if($validation->fails()){
@@ -204,9 +230,9 @@ class Pendaftaran extends Controller
         $iduniv = $request->input('univ');
         $jenisTiket = auth('peserta')->user()->dataPeserta->jenis_tiket_id;
 
-        if($jenisTiket == 1){
+        if($jenisTiket == 1 || $jenisTiket == 6){
             $datas = ProgramStudi::where(['universitas_id'=> $iduniv, 'kategori_id' => 2])->get();
-        } else if($jenisTiket == 2)
+        } else if($jenisTiket == 2 || $jenisTiket == 7)
         {
             $datas = ProgramStudi::where(['universitas_id'=> $iduniv, 'kategori_id' => 1])->get();
         } else {

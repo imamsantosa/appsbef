@@ -76,7 +76,7 @@
                             <div class="form-group">
                                 <label>Pilih bukti pembayaran</label>
                                 <input type="file" id="bukti" name="bukti" accept="image/*">
-                                <p class="help-block">hanya .PNG atau .JPG atau .JPEG dengan ukuran maksimal 50kb yang dapat diunggah</p>
+                                <p class="help-block">hanya .PNG atau .JPG atau .JPEG dengan ukuran maksimal 200kb yang dapat diunggah</p>
                             </div>
                             <div class="form-group">
                                 <img style="display: none" id="preview" src="#" class="img-responsive" alt="Bukti Pembayaran" />

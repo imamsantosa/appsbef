@@ -5,7 +5,7 @@
 @endsection
 
 @section('additional-header')
-
+    <meta name="csrf-token" content="{{csrf_token()}}" />
 @endsection
 
 @section('content')
@@ -32,9 +32,6 @@
                                 <label>Jenis Tiket</label>
                                 <select class="form-control" name="jenis_tiket" id="jenis_tiket">
                                     <option value="-">-- Pilih Tiket --</option>
-                                    @foreach($jenisTiket as $j)
-                                        <option value="{{$j->id}}" data-harga="{{$j->harga}}" data-kuota="{{$j->sisaTiket()}}">{{$j->nama.' - '.$j->harga()}}</option>
-                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
@@ -103,6 +100,30 @@
                     return false;
                 }
             });
+
+            $('#panlok').on('change', function(){
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: "POST",
+                    url: "{{ route('peserta_get_tiket') }}",
+                    dataType: "json",
+                    data: 'panlok='+$(this).val(),
+                    success: function(data) {
+                        var options, index, select, option;
+                        select = document.getElementById('jenis_tiket');
+                        select.options.length = 0;
+                        options = data.options;
+                        select.options.add(new Option("-- Pilih Prodi --", "-"));
+                        for (index = 0; index < options.length; ++index) {
+                            option = options[index];
+                            select.options.add(new Option(option.text, option.value));
+                        }
+                    }
+                });
+            });
+
         });
     </script>
 

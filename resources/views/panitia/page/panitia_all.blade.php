@@ -62,125 +62,124 @@
 @section('additional-footer')
     <script src="{{url('plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{url('plugins/datatables/dataTables.bootstrap.min.js')}}"></script>
-    {{--<script type="application/javascript">--}}
-        {{--var Table = $('#data_peserta').DataTable({--}}
-            {{--"ajax": {--}}
-                {{--headers: {--}}
-                    {{--'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-                {{--},--}}
-                {{--"url": "{{ route('panitia_data_panitia_all') }}",--}}
-                {{--"type": "post"--}}
-            {{--},--}}
-            {{--"Processing": true,--}}
-            {{--"ServerSide": true,--}}
-            {{--"columnDefs": [ { "targets": 0, "orderable": false } ],--}}
-            {{--"columns":--}}
-                    {{--[--}}
-                        {{--{--}}
-                            {{--"data": "username",--}}
-                            {{--"width": '15%',--}}
-                            {{--"render": function(data){--}}
-                                {{--return '<h6>'+data+'<h6>';--}}
-                            {{--}--}}
-                        {{--},--}}
+    <script type="application/javascript">
+        var Table = $('#data_peserta').DataTable({
+            "ajax": {
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                "url": "{{ route('panitia_data_panitia_all') }}",
+                "type": "post"
+            },
+            "Processing": true,
+            "ServerSide": true,
+            "columns":
+                    [
+                        {
+                            "data": "username",
+                            "width": '15%',
+                            "render": function(data){
+                                return '<h6>'+data+'<h6>';
+                            }
+                        },
 
-                        {{--{--}}
-                            {{--"data": "nama_lengkap",--}}
-                            {{--"width": '20%',--}}
-                            {{--"render": function(data){--}}
-                                {{--return '<h6>'+data+'</h6>';--}}
-                            {{--}--}}
-                        {{--},--}}
+                        {
+                            "data": "nama_lengkap",
+                            "width": '20%',
+                            "render": function(data){
+                                return '<h6>'+data+'</h6>';
+                            }
+                        },
 
-                        {{--{--}}
-                            {{--"data": "nomor_telepon",--}}
-                            {{--"render": function(data){--}}
-                                {{--return '<h6>'+data+'</h6>';--}}
-                            {{--}--}}
-                        {{--},--}}
-                        {{--{--}}
-                            {{--"data": "panlok",--}}
-                            {{--"render": function(data){--}}
-                                {{--return '<h6>'+data+'</h6>';--}}
-                            {{--}--}}
-                        {{--},--}}
-                        {{--{--}}
-                            {{--"data": null,--}}
-                            {{--"width": '15%',--}}
-                            {{--"render": function (data) {--}}
-                                {{--return '<h6>'+opsi(data)+'</h6>';--}}
-                            {{--}--}}
-                        {{--}--}}
-                    {{--]--}}
-        {{--});--}}
+                        {
+                            "data": "nomor_telepon",
+                            "render": function(data){
+                                return '<h6>'+data+'</h6>';
+                            }
+                        },
+                        {
+                            "data": "panlok",
+                            "render": function(data){
+                                return '<h6>'+data+'</h6>';
+                            }
+                        },
+                        {
+                            "data": null,
+                            "width": '15%',
+                            "render": function (data) {
+                                return '<h6>'+opsi(data)+'</h6>';
+                            }
+                        }
+                    ]
+        });
 
-        {{--function opsi(data) {--}}
-            {{--var role = "{{auth('panitia')->user()->role_id}}"--}}
-            {{--var a = '<button class="btn btn-primary btn-flat btn-sm detailbutton" data-toggle="tooltip" data-placement="top" title="lihat data secara detail"><span class="ion ion-navicon-round"></span></button>'--}}
+        function opsi(data) {
+            var role = "{{auth('panitia')->user()->role_id}}"
+            var a = '<button class="btn btn-primary btn-flat btn-sm detailbutton" data-toggle="tooltip" data-placement="top" title="lihat data secara detail"><span class="ion ion-navicon-round"></span></button>'
 
-            {{--var b = '';--}}
-            {{--var c = '';--}}
+            var b = '';
+            var c = '';
 
-            {{--if (role != '3' && data.posisi_id != 1){--}}
-                {{--var b = '<a class="btn btn-warning btn-sm btn-flat resetbutton" role="button" data-toggle="tooltip" data-placement="right" title="Reset Password Peserta"><span class="ion ion-ios-refresh"></span></a>'--}}
-                {{--var c = '<a class="btn btn-danger btn-sm btn-flat deletebutton" role="button" data-toggle="tooltip" data-placement="right" title="Delete Peserta"><span class="ion ion-ios-trash"></span></a>'--}}
-            {{--}--}}
+            if (role != '3' && data.posisi_id != 1){
+                var b = '<a class="btn btn-warning btn-sm btn-flat resetbutton" role="button" data-toggle="tooltip" data-placement="right" title="Reset Password Peserta"><span class="ion ion-ios-refresh"></span></a>'
+                var c = '<a class="btn btn-danger btn-sm btn-flat deletebutton" role="button" data-toggle="tooltip" data-placement="right" title="Delete Peserta"><span class="ion ion-ios-trash"></span></a>'
+            }
 
-            {{--return a+b+c;--}}
-        {{--}--}}
+            return a+b+c;
+        }
 
-        {{--$('#data_peserta tbody').on('click', '.detailbutton', function(){--}}
-            {{--var data  = Table.row( $(this).parents('tr') ).data();--}}
+        $('#data_peserta tbody').on('click', '.detailbutton', function(){
+            var data  = Table.row( $(this).parents('tr') ).data();
 
-            {{--$('#nama_lengkap').text(data.nama_lengkap);--}}
-            {{--$('#username').text(data.username);--}}
-            {{--$('#nomor_telepon').text(data.nomor_telepon);--}}
-            {{--$('#panlok').text(data.panlok);--}}
-            {{--$('#posisi').text(data.posisi);--}}
+            $('#nama_lengkap').text(data.nama_lengkap);
+            $('#username').text(data.username);
+            $('#nomor_telepon').text(data.nomor_telepon);
+            $('#panlok').text(data.panlok);
+            $('#posisi').text(data.posisi);
 
-            {{--$('#modal-detail').modal('show');--}}
-        {{--});--}}
+            $('#modal-detail').modal('show');
+        });
 
-        {{--$('#data_peserta tbody').on('click', '.resetbutton', function(){--}}
-            {{--var data  = Table.row( $(this).parents('tr') ).data();--}}
+        $('#data_peserta tbody').on('click', '.resetbutton', function(){
+            var data  = Table.row( $(this).parents('tr') ).data();
 
-            {{--if(confirm("Apakah anda yakin akan mereset password dari panitia "+data.username+" ?")){--}}
-                {{--$.ajax({--}}
-                    {{--headers: {--}}
-                        {{--'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-                    {{--},--}}
-                    {{--type: "POST",--}}
-                    {{--url: "{{ route('panitia_reset_password_panitia') }}",--}}
-                    {{--data: 'username='+data.username,--}}
-                {{--}).done(function(e){--}}
-                    {{--alert(e)--}}
-                {{--})--}}
-            {{--} else {--}}
-                {{--return false;--}}
-            {{--}--}}
-        {{--});--}}
+            if(confirm("Apakah anda yakin akan mereset password dari panitia "+data.username+" ?")){
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: "POST",
+                    url: "{{ route('panitia_reset_password_panitia') }}",
+                    data: 'username='+data.username,
+                }).done(function(e){
+                    alert(e)
+                })
+            } else {
+                return false;
+            }
+        });
 
-        {{--$('#data_peserta tbody').on('click', '.deletebutton', function(){--}}
-            {{--var data  = Table.row( $(this).parents('tr') ).data();--}}
+        $('#data_peserta tbody').on('click', '.deletebutton', function(){
+            var data  = Table.row( $(this).parents('tr') ).data();
 
-            {{--if(confirm("Apakah anda yakin akan menghapus user dari panitia "+data.username+" ?")){--}}
-                {{--$.ajax({--}}
-                    {{--headers: {--}}
-                        {{--'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-                    {{--},--}}
-                    {{--type: "POST",--}}
-                    {{--url: "{{ route('panitia_delete_panitia') }}",--}}
-                    {{--data: 'username='+data.username,--}}
-                {{--}).done(function(e){--}}
-                    {{--Table.ajax.reload( null, false );--}}
+            if(confirm("Apakah anda yakin akan menghapus user dari panitia "+data.username+" ?")){
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: "POST",
+                    url: "{{ route('panitia_delete_panitia') }}",
+                    data: 'username='+data.username,
+                }).done(function(e){
+                    Table.ajax.reload( null, false );
 
-                    {{--alert(e)--}}
-                {{--})--}}
-            {{--} else {--}}
-                {{--return false;--}}
-            {{--}--}}
-        {{--});--}}
-    {{--</script>--}}
+                    alert(e)
+                })
+            } else {
+                return false;
+            }
+        });
+    </script>
 
     <script type="application/javascript">
         function opsi(a){var b="{{auth('panitia')->user()->role_id}}",c='<button class="btn btn-primary btn-flat btn-sm detailbutton" data-toggle="tooltip" data-placement="top" title="lihat data secara detail"><span class="ion ion-navicon-round"></span></button>',d="",e="";if("3"!=b&&1!=a.posisi_id)var d='<a class="btn btn-warning btn-sm btn-flat resetbutton" role="button" data-toggle="tooltip" data-placement="right" title="Reset Password Peserta"><span class="ion ion-ios-refresh"></span></a>',e='<a class="btn btn-danger btn-sm btn-flat deletebutton" role="button" data-toggle="tooltip" data-placement="right" title="Delete Peserta"><span class="ion ion-ios-trash"></span></a>';return c+d+e}var Table=$("#data_peserta").DataTable({ajax:{headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")},url:"{{ route('panitia_data_panitia_all') }}",type:"post"},Processing:!0,ServerSide:!0,columnDefs:[{targets:0,orderable:!1}],columns:[{data:"username",width:"15%",render:function(a){return"<h6>"+a+"<h6>"}},{data:"nama_lengkap",width:"20%",render:function(a){return"<h6>"+a+"</h6>"}},{data:"nomor_telepon",render:function(a){return"<h6>"+a+"</h6>"}},{data:"panlok",render:function(a){return"<h6>"+a+"</h6>"}},{data:null,width:"15%",render:function(a){return"<h6>"+opsi(a)+"</h6>"}}]});$("#data_peserta tbody").on("click",".detailbutton",function(){var a=Table.row($(this).parents("tr")).data();$("#nama_lengkap").text(a.nama_lengkap),$("#username").text(a.username),$("#nomor_telepon").text(a.nomor_telepon),$("#panlok").text(a.panlok),$("#posisi").text(a.posisi),$("#modal-detail").modal("show")}),$("#data_peserta tbody").on("click",".resetbutton",function(){var a=Table.row($(this).parents("tr")).data();return!!confirm("Apakah anda yakin akan mereset password dari panitia "+a.username+" ?")&&void $.ajax({headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")},type:"POST",url:"{{ route('panitia_reset_password_panitia') }}",data:"username="+a.username}).done(function(a){alert(a)})}),$("#data_peserta tbody").on("click",".deletebutton",function(){var a=Table.row($(this).parents("tr")).data();return!!confirm("Apakah anda yakin akan menghapus user dari panitia "+a.username+" ?")&&void $.ajax({headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")},type:"POST",url:"{{ route('panitia_delete_panitia') }}",data:"username="+a.username}).done(function(a){Table.ajax.reload(null,!1),alert(a)})});

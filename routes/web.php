@@ -23,6 +23,7 @@ Route::group(['namespace' => 'Peserta'], function(){
 
         Route::get('daftar/pilih-tiket', ['uses' => 'Pendaftaran@PilihTiket', 'as' => 'peserta_pilih_tiket']);
         Route::post('daftar/pilih-tiket', ['uses' => 'Pendaftaran@PilihTiketProses', 'as'=>'peserta_pilih_tiket_proses']);
+        Route::post('daftar/get-tiket', ['uses' => 'Pendaftaran@getTiket', 'as' => 'peserta_get_tiket']);
 
         Route::get('daftar/pilih-tiket/konfirmasi', ['uses' => 'Pendaftaran@konfirmasiTiket', 'as' => 'peserta_konfirmasi_tiket']);
         Route::get('daftar/pilih-tiket/konfirmasi-tiket', ['uses' => 'Pendaftaran@konfirmasiTiketProses', 'as' => 'peserta_konfirmasi_tiket_proses']);
