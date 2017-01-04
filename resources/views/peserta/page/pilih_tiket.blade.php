@@ -86,49 +86,49 @@
 @endsection
 
 @section('additional-footer')
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('#form-jenis-tiket').on('submit', function(){
+    {{--<script type="text/javascript">--}}
+        {{--$(document).ready(function(){--}}
+            {{--$('#form-jenis-tiket').on('submit', function(){--}}
 
-                if($('#jenis_tiket').val() == '-' || $('#panlok').val() == '-'){
-                    alert('Anda belum memilih tiket atau panitia lokal');
-                    return false;
-                }
-                if(confirm('Apakah tiket yang anda masukan sudah benar?')){
+                {{--if($('#jenis_tiket').val() == '-' || $('#panlok').val() == '-'){--}}
+                    {{--alert('Anda belum memilih tiket atau panitia lokal');--}}
+                    {{--return false;--}}
+                {{--}--}}
+                {{--if(confirm('Apakah tiket yang anda masukan sudah benar?')){--}}
 
-                } else {
-                    return false;
-                }
-            });
+                {{--} else {--}}
+                    {{--return false;--}}
+                {{--}--}}
+            {{--});--}}
 
-            $('#panlok').on('change', function(){
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: "POST",
-                    url: "{{ route('peserta_get_tiket') }}",
-                    dataType: "json",
-                    data: 'panlok='+$(this).val(),
-                    success: function(data) {
-                        var options, index, select, option;
-                        select = document.getElementById('jenis_tiket');
-                        select.options.length = 0;
-                        options = data.options;
-                        select.options.add(new Option("-- Pilih Prodi --", "-"));
-                        for (index = 0; index < options.length; ++index) {
-                            option = options[index];
-                            select.options.add(new Option(option.text, option.value));
-                        }
-                    }
-                });
-            });
+            {{--$('#panlok').on('change', function(){--}}
+                {{--$.ajax({--}}
+                    {{--headers: {--}}
+                        {{--'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
+                    {{--},--}}
+                    {{--type: "POST",--}}
+                    {{--url: "{{ route('peserta_get_tiket') }}",--}}
+                    {{--dataType: "json",--}}
+                    {{--data: 'panlok='+$(this).val(),--}}
+                    {{--success: function(data) {--}}
+                        {{--var options, index, select, option;--}}
+                        {{--select = document.getElementById('jenis_tiket');--}}
+                        {{--select.options.length = 0;--}}
+                        {{--options = data.options;--}}
+                        {{--select.options.add(new Option("-- Pilih Prodi --", "-"));--}}
+                        {{--for (index = 0; index < options.length; ++index) {--}}
+                            {{--option = options[index];--}}
+                            {{--select.options.add(new Option(option.text, option.value));--}}
+                        {{--}--}}
+                    {{--}--}}
+                {{--});--}}
+            {{--});--}}
 
-        });
-    </script>
+        {{--});--}}
+    {{--</script>--}}
 
     {{--minify--}}
     <script type="application/javascript">
-//        $(document).ready(function(){$("#form-jenis-tiket").on("submit",function(){return"-"==$("#jenis_tiket").val()||$("#panlok").val()?(alert("Anda belum memilih tiket atau panitia lokal"),!1):!!confirm("Apakah tiket yang anda masukan sudah benar?")&&void 0})});
+        $(document).ready(function(){$("#form-jenis-tiket").on("submit",function(){return"-"==$("#jenis_tiket").val()||"-"==$("#panlok").val()?(alert("Anda belum memilih tiket atau panitia lokal"),!1):!!confirm("Apakah tiket yang anda masukan sudah benar?")&&void 0}),$("#panlok").on("change",function(){$.ajax({headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")},type:"POST",url:"{{ route('peserta_get_tiket') }}",dataType:"json",data:"panlok="+$(this).val(),success:function(a){var b,c,d,e;for(d=document.getElementById("jenis_tiket"),d.options.length=0,b=a.options,d.options.add(new Option("-- Pilih Prodi --","-")),c=0;c<b.length;++c)e=b[c],d.options.add(new Option(e.text,e.value))}})})});
     </script>
 @endsection
