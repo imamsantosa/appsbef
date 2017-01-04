@@ -30,6 +30,11 @@
                                 <td> {{$data->jenisTiket->nama}}</td>
                             </tr>
                             <tr>
+                                <td>Panitia Lokal</td>
+                                <td> : </td>
+                                <td> {{$data->panlok->nama}}</td>
+                            </tr>
+                            <tr>
                                 <td width="40%">Total yang harus dibayarkan</td>
                                 <td> : </td>
                                 <td> {{$data->jenisTiket->harga()}}</td>
@@ -109,13 +114,24 @@
                         <strong>Silahkan Lakukan Pembayaran Melalui :</strong>
                         <br>
                         <br>
-                        <strong>Transfer Bank</strong>
+                        @if(auth('peserta')->user()->dataPeserta->panlok_id == 1)
+                        <strong>Transfer Bank (panlok Utara)</strong>
                         <ul>
                             <li>Bank Rakyat Indonesia - Unit Tanjung</li>
                             <li>An. Vitri Widhianingsih</li>
                             <li><strong>1447 01 002082 53 2</strong></li>
 
                         </ul>
+                        @endif
+                        @if(auth('peserta')->user()->dataPeserta->panlok_id == 2)
+                        <strong>Transfer Bank (panlok Selatan)</strong>
+                        <ul>
+                            <li>Bank Rakyat Indonesia</li>
+                            <li>An. Astri Lutfiana Mukaromah</li>
+                            <li><strong>5874 01 010492 53 2</strong></li>
+
+                        </ul>
+                        @endif
                         <strong>Bayar Tunai</strong>
                         <ul>
                             <li>Hubungi Kontak Dibawah ini</li>
