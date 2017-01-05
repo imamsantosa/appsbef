@@ -28,7 +28,7 @@ class DataPeserta extends Controller
             $data = Peserta::where('username', $request->input('username'))->first();
             if($data != null){
                 $dataPencarian = \App\DataPeserta::where('peserta_id', $data->id)->first();
-                if($dataPencarian == null){
+                if($dataPencarian == null || $data->status_peserta_id == 1){
                     $errormessage = "Peserta belum memilih tiketnya";
                 }
             }
@@ -69,7 +69,7 @@ class DataPeserta extends Controller
         }
 
         return [
-            'nomor_tiket' => ($data->nomor_tiket == null)? "-" : $data->nomor_tiket,
+            'nomor_tiket' => ($data->nomor_tiket == null)? "-" : $data->nomorTiket(),
             'kode_pembayaran' => $data->kode_pembayaran,
             'jenis_tiket' => $data->jenisTiket->nama,
             'panlok' => $data->panlok->nama,

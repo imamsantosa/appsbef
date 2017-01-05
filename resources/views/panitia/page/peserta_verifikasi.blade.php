@@ -34,7 +34,7 @@
                             {{session('message')}}
                         </div>
                     @endif
-                    @if($dataPencarian == null)
+                    @if($dataPencarian == null || $errormessage != null)
                         <div class="alert alert-danger">
                             @if($errormessage != null)
                                 {{$errormessage}}
