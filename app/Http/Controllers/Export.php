@@ -8,12 +8,49 @@ use App\Universitas;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 class Export extends Controller
 {
     public function index()
     {
-        return view('export');
+        $data = DataPeserta::all();
+        foreach($data as $d){
+            $cek = DataPeserta::where('kode_pembayaran', $d->kode_pembayaran)->count();
+            if($cek > 0){
+                $d->update([
+                    'kode_pembayaran' => $this->generateKodePembayaran($d->jenis_tiket_id)
+                ]);
+            }
+        }
+
+//        return view('export');
+    }
+
+    private function generateKodePembayaran($jenis)
+    {
+        $k = '';
+        if($jenis == 1)
+            $k = 'A';
+        else if($jenis == 2)
+            $k = 'B';
+        else if($jenis == 3)
+            $k = 'C';
+        else if($jenis == 4)
+            $k = 'D';
+        else if($jenis == 5)
+            $k = 'E';
+        else if($jenis == 6)
+            $k = 'F';
+        else if($jenis == 7)
+            $k = 'G';
+
+        $gen = $k.date('d').rand(0, 100);
+
+        $cek = DataPeserta::where('kode_pembayaran', $gen)->count();
+
+        if($cek >= 1 ) return $this->generateKodePembayaran($jenis);
+        else return $gen;
     }
 
     public function process(Request $request)
