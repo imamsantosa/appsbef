@@ -13,10 +13,6 @@ class Export extends Controller
 {
     public function index()
     {
-        $gen = 'B0562';
-        $cek = DataPeserta::where('kode_pembayaran', $gen)->count();
-        dd($cek);
-
         return view('export');
     }
 
