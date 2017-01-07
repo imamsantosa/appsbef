@@ -111,7 +111,7 @@ class Pendaftaran extends Controller
         else if($jenis == 7)
             $k = 'G';
 
-        $gen = $k.date('d').rand(0, 100);
+        $gen = $k.date('d').rand(0, 1000);
         
         $cek = DataPeserta::where('kode_pembayaran', $gen)->count();
         
