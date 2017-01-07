@@ -47,7 +47,7 @@
                             <tr>
                                 <td width="30%">Username</td>
                                 <td width="1%">:</td>
-                                <td>{{$dataPencarian->peserta->fullname}}</td>
+                                <td>{{$dataPencarian->peserta->username}}</td>
                             </tr>
                             <tr>
                                 <td width="30%">Status Peserta</td>

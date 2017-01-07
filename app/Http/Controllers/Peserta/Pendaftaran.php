@@ -112,7 +112,9 @@ class Pendaftaran extends Controller
             $k = 'G';
 
         $gen = $k.date('d').rand(0, 100);
+        
         $cek = DataPeserta::where('kode_pembayaran', $gen)->count();
+        
         if($cek > 1 ) return $this->generateKodePembayaran($jenis);
         else return $gen;
     }

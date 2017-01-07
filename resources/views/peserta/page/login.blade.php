@@ -116,7 +116,9 @@
                 </div>
             </div>
         </div>
-
+        <img src="{{url('image/tatacara.jpeg')}}" class="img-responsive">
+        <br>
+        <br>
     </div>
 
     <div class="col-md-4">
