@@ -27,14 +27,12 @@ class Panitia extends Controller
             'expo_selatan' => Expo::where('selatan', 1)->count(),
 
             'saintek_utara' => DataPeserta::where(['jenis_tiket_id' => 2,'panlok_id'=> 1])->count(),
-            'saintek_selatan' => DataPeserta::where(['jenis_tiket_id'=> 2,'panlok_id'=> 2])->count(),
+            'saintek_selatan' => DataPeserta::where(['jenis_tiket_id'=> 7,'panlok_id'=> 2])->count(),
             'soshum_utara' => DataPeserta::where(['jenis_tiket_id'=> 1,'panlok_id'=> 1])->count(),
-            'soshum_selatan' => DataPeserta::where(['jenis_tiket_id'=> 1,'panlok_id'=> 2])->count(),
+            'soshum_selatan' => DataPeserta::where(['jenis_tiket_id'=> 6,'panlok_id'=> 2])->count(),
             'ipc_utara' => DataPeserta::where(['jenis_tiket_id'=> 3,'panlok_id'=> 1])->count(),
-            'ipc_selatan' => DataPeserta::where(['jenis_tiket_id'=> 3,'panlok_id'=> 2])->count(),
 
             'peserta_expo_utara' => DataPeserta::where(['jenis_tiket_id'=> 4,'panlok_id'=> 1])->count(),
-            'peserta_expo_selatan' => DataPeserta::where(['jenis_tiket_id'=> 4,'panlok_id'=> 2])->count(),
 
             'status_registrasi_utara' => Config::find(2)->config,
             'status_registrasi_selatan' => Config::find(3)->config,

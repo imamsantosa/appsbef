@@ -193,16 +193,6 @@
                             <td>:</td>
                             <td>{{$data['soshum_selatan']}}</td>
                         </tr>
-                        <tr>
-                            <td>Total Peserta IPC</td>
-                            <td>:</td>
-                            <td>{{$data['ipc_selatan']}}</td>
-                        </tr>
-                        <tr>
-                            <td>Total Expo</td>
-                            <td>:</td>
-                            <td>{{$data['expo_selatan']}}</td>
-                        </tr>
                     </table>
                 </div>
                 <!-- /.box-body -->
