@@ -97,8 +97,11 @@ class DataPeserta extends Controller
         return "Berhasil mereset password username ".$request->input('username')." menjadi \"123456\"";
     }
 
-    public function buktiPembayaran($filename)
+    public function buktiPembayaran($id)
     {
+
+        $data = \App\DataPeserta::find($id);
+        $filename = $data->bukti;
         $pathimage = 'bukti_pembayaran/'.$filename;
 
         return response(Storage::get($pathimage), 200)->header('Content-Type', 'image/jpeg');

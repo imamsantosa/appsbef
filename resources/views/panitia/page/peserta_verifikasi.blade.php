@@ -83,7 +83,7 @@
                             <tr>
                                 <td width="30%">Bukti Upload</td>
                                 <td width="1%">:</td>
-                                <td><img src="{{route('panitia_data_peserta_bukti', ['filename' => $dataPencarian->bukti])}}" class="img-responsive"></td>
+                                <td><img src="{{route('panitia_data_peserta_bukti', ['filename' => $dataPencarian->id])}}" class="img-responsive"></td>
                             </tr>
                             @endif
                         </table>
