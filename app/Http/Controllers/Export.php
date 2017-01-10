@@ -16,8 +16,16 @@ class Export extends Controller
     {
         $data = DataPeserta::where('status_pembayaran_id', 3)->get();
         foreach($data as $d){
+            $ceknomor = DataPeserta::where('jenis_tiket_id', $d->jenis_tiket_id)->count();
+
+            if($ceknomor <= 0){
+                $nomortiket = 1;
+            } else{
+                $nomortiket = $ceknomor + 1;
+            }
+
             $d->update([
-                'nomor_tiket' => null,
+                'nomor_tiket' => $nomortiket,
             ]);
         }
 
