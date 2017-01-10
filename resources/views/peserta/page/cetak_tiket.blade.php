@@ -52,8 +52,8 @@
                 <tr>
                     <td width="20%">Username</td>
                     <td width="1%">:</td>
-                    <td width="50%">{{auth('peserta')->user()->username}}</td>
-                    <td rowspan="8">
+                    <td width="40%">{{auth('peserta')->user()->username}}</td>
+                    <td rowspan="8" width="40%">
                         <img class="image-resposive" src="{{route('peserta_photo_profile')}}">
                     </td>
                 </tr>
@@ -102,7 +102,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="4">
+                    <td colspan="3">
                     @if(auth('peserta')->user()->dataPeserta->jenis_tiket_id != 4)
                         @foreach(auth('peserta')->user()->pilihanUniversitas as $d)
                             {{$d->urutan}}. {{$d->programStudi->kode}} - {{$d->programStudi->nama}} - {{$d->programStudi->universitas->nama}}
@@ -111,6 +111,15 @@
                     @else
                         Expo Universitas
                     @endif
+                    </td>
+                    <td>
+                        <?php
+                            $qr = [
+                                'nomor_tiket' => auth('peserta')->user()->dataPeserta->nomorTiket(),
+                                'id' => auth('peserta')->user()->dataPeserta->id,
+                            ];
+                        ?>
+                        <img src="data:image/png;base64,{{DNS2D::getBarcodePNG(json_encode($qr), 'QRCODE',6,6)}}" alt="barcode" class="image-responsive"  />
                     </td>
                 </tr>
             </table>
