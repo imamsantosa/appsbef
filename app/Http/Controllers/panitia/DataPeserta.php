@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\panitia;
+ini_set('max_execution_time', 3600);
 
 use App\Peserta;
 use Illuminate\Http\Request;
