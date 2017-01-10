@@ -17,17 +17,17 @@ class Export extends Controller
         $data = DataPeserta::where('status_pembayaran_id', 3)->get();
         foreach($data as $d){
             $ceknomor = DataPeserta::where('jenis_tiket_id', $d->jenis_tiket_id)->where('nomor_tiket', '<>', null)->count();
-
-            if($ceknomor <= 0){
-                $nomortiket = 1;
-            } else{
-                $nomortiket = 0;
-                $nomortiket = $ceknomor + 1;
-            }
-
-            $d->update([
-                'nomor_tiket' => $nomortiket,
-            ]);
+            echo $ceknomor;
+//            if($ceknomor <= 0){
+//                $nomortiket = 1;
+//            } else{
+//                $nomortiket = 0;
+//                $nomortiket = $ceknomor + 1;
+//            }
+//
+//            $d->update([
+//                'nomor_tiket' => $nomortiket,
+//            ]);
         }
 
         return "ok";
