@@ -114,12 +114,9 @@
                     </td>
                     <td>
                         <?php
-                            $qr = [
-                                'nomor_tiket' => auth('peserta')->user()->dataPeserta->nomorTiket(),
-                                'id' => auth('peserta')->user()->dataPeserta->id,
-                            ];
+
                         ?>
-                        <img src="data:image/png;base64,{{DNS2D::getBarcodePNG(json_encode($qr), 'QRCODE',6,6)}}" alt="barcode" class="image-responsive"  />
+                        <img src="{{auth('peserta')->user()->dataPeserta->qrCode()}}" alt="barcode" class="image-responsive"  />
                     </td>
                 </tr>
             </table>

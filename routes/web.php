@@ -62,6 +62,9 @@ Route::group(['namespace' => 'panitia', 'prefix' => 'panitia'], function(){
 
     Route::group(['middleware' => 'auth.panitia'], function(){
         Route::get('photo-profil', ['uses'=>'Panitia@photoProfile', 'as' => 'panitia_photo_profile']);
+        Route::get('photo-peserta/{id}', ['uses'=>'Panitia@photoPeserta', 'as' => 'panitia_photo_peserta']);
+        Route::get('photo-panitia/{id}', ['uses'=>'Panitia@photoPanitia', 'as' => 'panitia_photo_panitia_general']);
+
         Route::get('/', ['uses' => 'Panitia@home', 'as' => 'panitia_home']);
 
         //route data-peserta
@@ -71,7 +74,7 @@ Route::group(['namespace' => 'panitia', 'prefix' => 'panitia'], function(){
         //rekap
         Route::get('data-peserta/rekap', ['uses' => 'DataPeserta@rekap', 'as' => 'panitia_data_peserta_rekap', 'middleware' => ['panitia.admin']]);
         Route::get('data-peserta/rekap/get', ['uses' => 'DataPeserta@getRekap', 'as' => 'panitia_data_peserta_get_rekap', 'middleware' => ['panitia.admin']]);
-
+        Route::get('data-peserta/kartu-meja', ['uses' => 'DataPeserta@kartuMeja', 'as' => 'panitia_data_peserta_kartu']);
 
         //route data panitia
         Route::get('data-panitia/all', ['uses' => 'DataPanitia@all', 'as' => 'panitia_data_panitia_semua']);

@@ -462,4 +462,21 @@ class DataPeserta extends Controller
 
         })->export('xlsx');
     }
+
+    public function kartuMeja(Request $request)
+    {
+        $t = $request->input('t');
+
+        if($t == 'soshum-utara'){
+            $datapeserta = \App\DataPeserta::where('jenis_tiket_id', 1)->where('nomor_tiket', '<>', null)->orderBy('nomor_tiket', 'asc')->get();
+        } else if($t == 'saintek-utara'){
+            $datapeserta = \App\DataPeserta::where('jenis_tiket_id', 2)->where('nomor_tiket', '<>', null)->orderBy('nomor_tiket', 'asc')->get();
+        } else if($t == 'ipc-utara'){
+            $datapeserta = \App\DataPeserta::where('jenis_tiket_id', 2)->where('nomor_tiket', '<>', null)->orderBy('nomor_tiket', 'asc')->get();
+        } else {
+            return redirect()->route('panitia_data_peserta_rekap');
+        }
+
+        return view('panitia/page/kartu_meja', compact('datapeserta'));
+    }
 }

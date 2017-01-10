@@ -38,6 +38,21 @@
 
                 </div>
             </div>
+
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Unduhan</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <a href="{{route('panitia_data_peserta_kartu', ['t' => 'soshum-utara'])}}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Unduh Kartu Peserta Soshum Panlok Utara"><span class="fa fa-download"></span> Kartu Meja Peserta Soshum Utara</a>
+                    &nbsp;
+                    <a href="{{route('panitia_data_peserta_kartu', ['t' => 'saintek-utara'])}}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Unduh Kartu Peserta Saintek Panlok Utara"><span class="fa fa-download"></span> Kartu Meja Peserta Saintek Utara</a>
+                    &nbsp;
+                    <a href="{{route('panitia_data_peserta_kartu', ['t' => 'ipc-utara'])}}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Unduh Kartu Peserta IPC Panlok Utara"><span class="fa fa-download"></span> Kartu Meja Peserta IPC Utara</a>
+                    &nbsp;
+                </div>
+            </div>
         </div>
     </div>
 @endsection

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Milon\Barcode\DNS2D;
 
 class DataPeserta extends Model
 {
@@ -60,5 +61,23 @@ class DataPeserta extends Model
     public function panlok()
     {
         return $this->belongsTo(Panlok::class, 'panlok_id');
+    }
+
+    public function qrCode()
+    {
+        $qr = [
+            'nomor_tiket' => $this->nomorTiket(),
+            'id' => $this->id,
+        ];
+        return "data:image/png;base64,". \DNS2D::getBarcodePNG(json_encode($qr), 'QRCODE',4,4);
+    }
+
+    public function qrCodeParam($p, $l)
+    {
+        $qr = [
+            'nomor_tiket' => $this->nomorTiket(),
+            'id' => $this->id,
+        ];
+        return "data:image/png;base64,". \DNS2D::getBarcodePNG(json_encode($qr), 'QRCODE',$p,$l);
     }
 }
