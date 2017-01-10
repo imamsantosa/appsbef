@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\panitia;
-ini_set('max_execution_time', 3600);
-
+//ini_set('max_execution_time', 3600);
+set_time_limit(0);
+ini_set('memory_limit', '1G');
 use App\Peserta;
 use Illuminate\Http\Request;
 
