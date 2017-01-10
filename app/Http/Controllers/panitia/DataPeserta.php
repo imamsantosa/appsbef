@@ -169,4 +169,297 @@ class DataPeserta extends Controller
     {
         return view('panitia/page/rekap');
     }
+
+    public function getRekap(Request $request)
+    {
+        $t = $request->input('t');
+        
+        if($t == 'fix-utara'){
+            return $this->fixUtara();
+        } else if($t == 'fix-selatan'){
+            return $this->fixSelatan();
+        } else if ($t == 'fix-all'){
+            return $this->fixAll();
+        } else {
+            return redirect()->route('panitia_data_peserta_rekap');
+        }
+        
+    }
+    
+    private function fixUtara()
+    {
+        \Excel::create('Data Pendaftar Utara per '.date("Y-m-d h:i:s"), function($excel) {
+            $excel->sheet('Soshum', function($sheet) {
+
+                $sheet->row(1, [
+                    "No",
+                    "Nomor Tiket",
+                    "Username",
+                    "Nama Lengkap",
+                    "Asal Sekolah",
+                    "Nomor Telepon",
+                    "Kode Pembayaran",
+                    "Panlok",
+                    "Jenis Tiket",
+                    "Tanggal Konfirmasi",
+                    "Panitia Konfirmasi"
+                ]);
+
+                $datapeserta = \App\DataPeserta::where('jenis_tiket_id', 1)->where('nomor_tiket', '<>', null)->orderBy('nomor_tiket', 'asc')->get();
+                $baris = 2;
+                $no = 1;
+                foreach ($datapeserta as $d){
+                    $sheet->row($baris++, [
+                        $no++,
+                        $d->nomorTiket(),
+                        $d->peserta->username,
+                        $d->peserta->fullname,
+                        $d->peserta->school,
+                        $d->peserta->phone,
+                        $d->kode_pembayaran,
+                        $d->panlok->nama,
+                        $d->jenisTiket->nama,
+                        $d->tanggal_konfirmasi,
+                        $d->panitia_konfirmasi
+                    ]);
+                }
+            });
+            $excel->sheet('Saintek', function($sheet) {
+
+                $sheet->row(1, [
+                    "No",
+                    "Nomor Tiket",
+                    "Username",
+                    "Nama Lengkap",
+                    "Asal Sekolah",
+                    "Nomor Telepon",
+                    "Kode Pembayaran",
+                    "Panlok",
+                    "Jenis Tiket",
+                    "Tanggal Konfirmasi",
+                    "Panitia Konfirmasi"
+                ]);
+
+                $datapeserta = \App\DataPeserta::where('jenis_tiket_id', 2)->where('nomor_tiket', '<>', null)->orderBy('nomor_tiket', 'asc')->get();
+                $baris = 2;
+                $no = 1;
+                foreach ($datapeserta as $d){
+                    $sheet->row($baris++, [
+                        $no++,
+                        $d->nomorTiket(),
+                        $d->peserta->username,
+                        $d->peserta->fullname,
+                        $d->peserta->school,
+                        $d->peserta->phone,
+                        $d->kode_pembayaran,
+                        $d->panlok->nama,
+                        $d->jenisTiket->nama,
+                        $d->tanggal_konfirmasi,
+                        $d->panitia_konfirmasi
+                    ]);
+                }
+            });
+            $excel->sheet('IPC', function($sheet) {
+
+                $sheet->row(1, [
+                    "No",
+                    "Nomor Tiket",
+                    "Username",
+                    "Nama Lengkap",
+                    "Asal Sekolah",
+                    "Nomor Telepon",
+                    "Kode Pembayaran",
+                    "Panlok",
+                    "Jenis Tiket",
+                    "Tanggal Konfirmasi",
+                    "Panitia Konfirmasi"
+                ]);
+
+                $datapeserta = \App\DataPeserta::where('jenis_tiket_id', 3)->where('nomor_tiket', '<>', null)->orderBy('nomor_tiket', 'asc')->get();
+                $baris = 2;
+                $no = 1;
+                foreach ($datapeserta as $d){
+                    $sheet->row($baris++, [
+                        $no++,
+                        $d->nomorTiket(),
+                        $d->peserta->username,
+                        $d->peserta->fullname,
+                        $d->peserta->school,
+                        $d->peserta->phone,
+                        $d->kode_pembayaran,
+                        $d->panlok->nama,
+                        $d->jenisTiket->nama,
+                        $d->tanggal_konfirmasi,
+                        $d->panitia_konfirmasi
+                    ]);
+                }
+            });
+
+            $excel->sheet('Expo', function($sheet) {
+
+                $sheet->row(1, [
+                    "No",
+                    "Nomor Tiket",
+                    "Username",
+                    "Nama Lengkap",
+                    "Asal Sekolah",
+                    "Nomor Telepon",
+                    "Kode Pembayaran",
+                    "Panlok",
+                    "Jenis Tiket",
+                    "Tanggal Konfirmasi",
+                    "Panitia Konfirmasi"
+                ]);
+
+                $datapeserta = \App\DataPeserta::where('jenis_tiket_id', 4)->where('nomor_tiket', '<>', null)->orderBy('nomor_tiket', 'asc')->get();
+                $baris = 2;
+                $no = 1;
+                foreach ($datapeserta as $d){
+                    $sheet->row($baris++, [
+                        $no++,
+                        $d->nomorTiket(),
+                        $d->peserta->username,
+                        $d->peserta->fullname,
+                        $d->peserta->school,
+                        $d->peserta->phone,
+                        $d->kode_pembayaran,
+                        $d->panlok->nama,
+                        $d->jenisTiket->nama,
+                        $d->tanggal_konfirmasi,
+                        $d->panitia_konfirmasi
+                    ]);
+                }
+            });
+
+
+
+        })->export('xlsx');
+    }
+    
+    private function fixSelatan()
+    {
+        \Excel::create('Data Pendaftar Selatan per '.date("Y-m-d h:i:s"), function($excel) {
+            $excel->sheet('Soshum', function($sheet) {
+
+                $sheet->row(1, [
+                    "No",
+                    "Nomor Tiket",
+                    "Username",
+                    "Nama Lengkap",
+                    "Asal Sekolah",
+                    "Nomor Telepon",
+                    "Kode Pembayaran",
+                    "Panlok",
+                    "Jenis Tiket",
+                    "Tanggal Konfirmasi",
+                    "Panitia Konfirmasi"
+                ]);
+
+                $datapeserta = \App\DataPeserta::where('jenis_tiket_id', 6)->where('nomor_tiket', '<>', null)->orderBy('nomor_tiket', 'asc')->get();
+                $baris = 2;
+                $no = 1;
+                foreach ($datapeserta as $d){
+                    $sheet->row($baris++, [
+                        $no++,
+                        $d->nomorTiket(),
+                        $d->peserta->username,
+                        $d->peserta->fullname,
+                        $d->peserta->school,
+                        $d->peserta->phone,
+                        $d->kode_pembayaran,
+                        $d->panlok->nama,
+                        $d->jenisTiket->nama,
+                        $d->tanggal_konfirmasi,
+                        $d->panitia_konfirmasi
+                    ]);
+                }
+            });
+            $excel->sheet('Saintek', function($sheet) {
+
+                $sheet->row(1, [
+                    "No",
+                    "Nomor Tiket",
+                    "Username",
+                    "Nama Lengkap",
+                    "Asal Sekolah",
+                    "Nomor Telepon",
+                    "Kode Pembayaran",
+                    "Panlok",
+                    "Jenis Tiket",
+                    "Tanggal Konfirmasi",
+                    "Panitia Konfirmasi"
+                ]);
+
+                $datapeserta = \App\DataPeserta::where('jenis_tiket_id', 7)->where('nomor_tiket', '<>', null)->orderBy('nomor_tiket', 'asc')->get();
+                $baris = 2;
+                $no = 1;
+                foreach ($datapeserta as $d){
+                    $sheet->row($baris++, [
+                        $no++,
+                        $d->nomorTiket(),
+                        $d->peserta->username,
+                        $d->peserta->fullname,
+                        $d->peserta->school,
+                        $d->peserta->phone,
+                        $d->kode_pembayaran,
+                        $d->panlok->nama,
+                        $d->jenisTiket->nama,
+                        $d->tanggal_konfirmasi,
+                        $d->panitia_konfirmasi
+                    ]);
+                }
+            });
+
+
+
+        })->export('xlsx');
+    }
+    
+    private function fixAll()
+    {
+        \Excel::create('Data Semua Peserta per '.date("Y-m-d h:i:s"), function($excel) {
+            $excel->sheet('Semua', function($sheet) {
+
+                $sheet->row(1, [
+                    "No",
+                    "Username",
+                    "Nama Lengkap",
+                    "Asal Sekolah",
+                    "Nomor Telepon",
+                    "Status Peserta",
+                    "Kode Pembayaran",
+                    "Status Pembayaran",
+                    "Panlok",
+                    "Nomor Tiket",
+                    "Jenis Tiket",
+                    "Tanggal Konfirmasi",
+                    "Panitia Konfirmasi"
+                ]);
+
+                $peserta = Peserta::all();
+                $baris = 2;
+                $no = 1;
+                foreach ($peserta as $d){
+                    $sheet->row($baris++, [
+                        $no++,
+                        $d->username,
+                        $d->fullname,
+                        $d->school,
+                        $d->phone,
+                        $d->statusPeserta->nama,
+                        ($d->dataPeserta != null)? $d->dataPeserta->kode_pembayaran : "-",
+                        ($d->dataPeserta != null)? $d->dataPeserta->statusPembayaran->nama : "-",
+                        ($d->dataPeserta != null)? $d->dataPeserta->panlok->nama : "-",
+                        ($d->dataPeserta != null)? $d->dataPeserta->nomorTiket() : "-",
+                        ($d->dataPeserta != null)? $d->dataPeserta->jenisTiket->nama : "-",
+                        ($d->dataPeserta != null)? $d->dataPeserta->tanggal_konfirmasi : "-",
+                        ($d->dataPeserta != null)? $d->dataPeserta->panitia_konfirmasi : "-",
+                    ]);
+                }
+            });
+
+
+
+        })->export('xlsx');
+    }
 }

@@ -67,7 +67,11 @@ Route::group(['namespace' => 'panitia', 'prefix' => 'panitia'], function(){
         //route data-peserta
         Route::get('data-peserta/all', ['uses' => 'DataPeserta@aktif', 'as' => 'panitia_data_peserta_aktif']);
         Route::get('data-peserta/verifikasi', ['uses' => 'DataPeserta@verifikasi', 'as' => 'panitia_data_peserta_verifikasi', 'middleware' => ['panitia.admin']]);
+
+        //rekap
         Route::get('data-peserta/rekap', ['uses' => 'DataPeserta@rekap', 'as' => 'panitia_data_peserta_rekap', 'middleware' => ['panitia.admin']]);
+        Route::get('data-peserta/rekap/get', ['uses' => 'DataPeserta@getRekap', 'as' => 'panitia_data_peserta_get_rekap', 'middleware' => ['panitia.admin']]);
+
 
         //route data panitia
         Route::get('data-panitia/all', ['uses' => 'DataPanitia@all', 'as' => 'panitia_data_panitia_semua']);

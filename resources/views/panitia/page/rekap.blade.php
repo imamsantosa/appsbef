@@ -30,7 +30,12 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <div class="alert alert-warning">Mohon maaf. masih dalam pengembangan</div>
+                    <a href="{{route('panitia_data_peserta_get_rekap', ['t' => 'fix-utara'])}}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Data Peserta (Soshum, Saintek, IPC, Expo) Panlok Utara. Data Ini hanya data yang telah mendapatkan nomor peserta atau sudah fix"><span class="fa fa-download"></span> Peserta Fix Utara</a>
+                    &nbsp;
+                    <a href="{{route('panitia_data_peserta_get_rekap', ['t' => 'fix-selatan'])}}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Data Peserta (Soshum, Saintek) Panlok Selatan. Data Ini hanya data yang telah mendapatkan nomor peserta atau sudah fix"><span class="fa fa-download"></span>Peserta Fix Selatan</a>
+                    &nbsp;
+                    <a href="{{route('panitia_data_peserta_get_rekap', ['t' => 'fix-all'])}}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Semua Data (Baik Sudah Fix atau belum)"><span class="fa fa-download"></span>Semua Peserta</a>
+
                 </div>
             </div>
         </div>

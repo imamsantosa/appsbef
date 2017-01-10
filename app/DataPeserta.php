@@ -44,6 +44,12 @@ class DataPeserta extends Model
             case 5:
                 $jenis = 'OTS-';
                 break;
+            case 6:
+                $jenis = 'soshum-';
+                break;
+            case 7:
+                $jenis = 'saintek-';
+                break;
             default:
                 $jenis = '-';
                 break;
