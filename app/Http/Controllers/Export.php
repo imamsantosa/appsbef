@@ -14,15 +14,14 @@ class Export extends Controller
 {
     public function index()
     {
-        $data = DataPeserta::all();
+        $data = DataPeserta::where('status_pembayaran_id', 3)->get();
         foreach($data as $d){
-            $cek = DataPeserta::where('kode_pembayaran', $d->kode_pembayaran)->count();
-            if($cek > 0){
-                $d->update([
-                    'kode_pembayaran' => $this->generateKodePembayaran($d->jenis_tiket_id)
-                ]);
-            }
+            $data->update([
+                'nomor_tiket' => null,
+            ]);
         }
+
+        return "ok";
 
 //        return view('export');
     }
