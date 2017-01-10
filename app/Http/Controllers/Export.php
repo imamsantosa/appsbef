@@ -16,7 +16,7 @@ class Export extends Controller
     {
         $data = DataPeserta::where('status_pembayaran_id', 3)->get();
         foreach($data as $d){
-            $data->update([
+            $d->update([
                 'nomor_tiket' => null,
             ]);
         }
