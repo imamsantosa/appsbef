@@ -132,7 +132,7 @@ class DataPeserta extends Controller
         }
 
 
-        $ceknomor = \App\DataPeserta::where('jenis_tiket_id', $data->jenis_tiket_id)->count();
+        $ceknomor = \App\DataPeserta::where('jenis_tiket_id', $data->jenis_tiket_id)->where('nomor_tiket', '<>', null)->count();
 
         if($ceknomor <= 0){
             $nomortiket = 1;
