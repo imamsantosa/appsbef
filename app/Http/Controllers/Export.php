@@ -21,6 +21,7 @@ class Export extends Controller
             if($ceknomor <= 0){
                 $nomortiket = 1;
             } else{
+                $nomortiket = 0;
                 $nomortiket = $ceknomor + 1;
             }
 
