@@ -335,7 +335,7 @@ class DataPeserta extends Controller
 
 
 
-        })->export('xlsx');
+        })->export('xls');
     }
     
     private function fixSelatan()
@@ -414,7 +414,7 @@ class DataPeserta extends Controller
 
 
 
-        })->export('xlsx');
+        })->export('xls');
     }
     
     private function fixAll()
@@ -462,7 +462,7 @@ class DataPeserta extends Controller
 
 
 
-        })->export('xlsx');
+        })->export('xls');
     }
 
     public function kartuMeja(Request $request)
