@@ -474,7 +474,7 @@ class DataPeserta extends Controller
         } else if($t == 'saintek-utara'){
             $datapeserta = \App\DataPeserta::where('jenis_tiket_id', 2)->where('nomor_tiket', '<>', null)->orderBy('nomor_tiket', 'asc')->get();
         } else if($t == 'ipc-utara'){
-            $datapeserta = \App\DataPeserta::where('jenis_tiket_id', 2)->where('nomor_tiket', '<>', null)->orderBy('nomor_tiket', 'asc')->get();
+            $datapeserta = \App\DataPeserta::where('jenis_tiket_id', 3)->where('nomor_tiket', '<>', null)->orderBy('nomor_tiket', 'asc')->get();
         } else {
             return redirect()->route('panitia_data_peserta_rekap');
         }
