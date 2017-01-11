@@ -52,7 +52,7 @@
                 </ul>
             </li>
 
-            <li class="treeview {{(isset($expo))?"active":""}}">
+            <li class="treeview {{(isset($expo) || isset($expo_tampil))?"active":""}}">
                 <a href="#">
                     <i class="fa fa-files-o"></i>
                     <span>Data Universitas Expo</span>
@@ -63,6 +63,7 @@
 
                 <ul class="treeview-menu">
                     <li class="{{(isset($expo))?"active":""}}"><a href="{{route('panitia_data_expo')}}"><i class="fa fa-circle-o"></i> Semua Universitas Expo</a></li>
+                    <li class="{{(isset($expo_tampil))?"active":""}}"><a href="{{route('panitia_tampil_expo')}}"><i class="fa fa-circle-o"></i> Tampil Expo (Chat App)</a></li>
                 </ul>
             </li>
 

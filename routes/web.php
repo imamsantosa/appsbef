@@ -102,6 +102,10 @@ Route::group(['namespace' => 'panitia', 'prefix' => 'panitia'], function(){
         Route::post('data-expo/edit/{id}', ['uses' => 'DataExpo@editProcess', 'as' => 'panitia_data_expo_edit_process']);
         Route::post('data-expo/delete', ['uses' => 'DataExpo@delete', 'as' => 'panitia_data_expo_delete']);
 
+        Route::get('tampil-expo', ['uses' => 'DataExpo@tampilIndex', 'as' => 'panitia_tampil_expo']);
+        Route::get('tampil-expo/{id}', ['uses' => 'DataExpo@tampilUniversitas', 'as' => 'panitia_tampil_expo_universitas']);
+        Route::get('tampil-expo/{id}/chat', ['uses' => 'DataExpo@tampilUniversitasChat', 'as' => 'panitia_tampil_expo_universitas_chat']);
+
         Route::get('konfigurasi', ['uses' => 'Konfigurasi@index', 'as' => 'panitia_konfigurasi']);
         Route::post('konfigurasi/save/{panlok}', ['uses' => 'Konfigurasi@save', 'as' => 'panitia_konfigurasi_save']);
 

@@ -108,4 +108,34 @@ class DataExpo extends Controller
 
         return "sukses menghapus Expo";
     }
+
+    public function tampilIndex()
+    {
+        $data = Expo::all();
+        return view('panitia/page/tampil_list_univ', compact('data'));
+    }
+
+    public function tampilUniversitas($id)
+    {
+        $data = Expo::all();
+        $univ = Expo::find($id);
+
+        if($univ == null){
+            return redirect()->route('panitia_tampil_expo');
+        }
+
+        return view('panitia/page/tampil_univ', compact('data', 'univ'));
+    }
+
+    public function tampilUniversitasChat($id)
+    {
+        $data = Expo::all();
+        $univ = Expo::find($id);
+
+        if($univ == null){
+            return redirect()->route('panitia_tampil_expo');
+        }
+
+        return view('panitia/page/tampil_univ_chat', compact('data', 'univ'));
+    }
 }

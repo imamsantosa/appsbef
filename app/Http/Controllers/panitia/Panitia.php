@@ -67,6 +67,15 @@ class Panitia extends Controller
         return response(Storage::get($pathimage), 200)->header('Content-Type', 'image/jpeg');
     }
 
+    public function photoPanitia($id)
+    {
+        $data = \App\Panitia::find($id);
+        $pathimage = 'profile/'.$data->photo;
+
+        return response(Storage::get($pathimage), 200)->header('Content-Type', 'image/jpeg');
+    }
+
+
     public function profile()
     {
         return view('panitia/page/profile');
