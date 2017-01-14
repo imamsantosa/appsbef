@@ -27,7 +27,7 @@ connection.connect(function(err) {
             if(msg.expo_id == expo_id){
                 var chat  = {user_id: msg.user_id, is_panitia: 1, expo_id: expo_id, chat: msg.chat, date: '-'}
                 connection.query('INSERT INTO `chat` set ?', chat, function(err, result) {
-                    console.log(err)
+                    msg.date = Date()
                     io.emit('chat message panitia', msg);
                 });
             }

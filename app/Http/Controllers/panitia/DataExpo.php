@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Panitia;
 
+use App\Chat;
 use App\Expo;
 use Illuminate\Http\Request;
 
@@ -136,6 +137,9 @@ class DataExpo extends Controller
             return redirect()->route('panitia_tampil_expo');
         }
 
-        return view('panitia/page/tampil_univ_chat', compact('data', 'univ'));
+        $lastchat = Chat::where('expo_id', $id)->orderBy('updated_at','desc')->take(500)->get()->reverse();
+
+
+        return view('panitia/page/tampil_univ_chat', compact('data', 'univ', 'lastchat'));
     }
 }

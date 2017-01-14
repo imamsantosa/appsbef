@@ -12,6 +12,7 @@
 */
 
 Route::get('/', ['uses' => 'Index@index', 'as' => 'index']);
+Route::get('not-found', ['uses' => 'Index@notFound', 'as'=>'not_found']);
 
 Route::group(['namespace' => 'Peserta'], function(){
     Route::post('auth/register', ['uses' => 'AuthenticactionPeserta@register', 'as' => 'peserta_register']);

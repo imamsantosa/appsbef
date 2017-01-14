@@ -62,21 +62,47 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active">
-                        <div class="direct-chat-messages" id="message-list" style="height: 380px;">
-
-
+                        <div class="direct-chat-messages" id="message-list" style="height: 380px;    overflow-x: hidden;">
+                            @foreach($lastchat as $l)
+                                <?php $me = (auth('panitia')->user()->id == $l->user_id) ?>
+                                <div class="row">
+                                    <div class="col-md-9 {{($me)? "col-md-offset-3": ""}}">
+                                        <div class="direct-chat-msg {{($me)? "right": ""}}">
+                                            <div class="direct-chat-info clearfix">
+                                                <span class="direct-chat-name {{($me)? "pull-right": "pull-left"}} {{($l->is_panitia)? "text-blue" : "text-green"}}">
+                                                    {{$l->dataUser->fullname}}
+                                                </span>
+                                                <span class="direct-chat-timestamp {{($me)? "pull-left": "pull-right"}}">{{$l->updated_at}}</span>
+                                            </div>
+                                            <img class="direct-chat-img" src="{{route('panitia_photo_panitia_general', ['id' => $l->user_id])}}">
+                                            <div class="direct-chat-text {{($me)? "text-right": "text-left"}} " style="word-wrap: break-word;">
+                                                {{$l->chat}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
                 <div class="box-footer">
                     <form id="form">
                         <div class="input-group">
-                            <input class="form-control" maxlength="250" id="msg" placeholder="Type message...">
+                            <input class="form-control" maxlength="250" id="msg" placeholder="Type message..." autocomplete="off">
                             <div class="input-group-btn">
-                                <button type="submit" class="btn btn-success"><i class="fa fa-send"></i></button>
+                                <button type="submit" id="btn-submit" class="btn btn-success"><i class="fa fa-send"></i></button>
                             </div>
                         </div>
                     </form>
+                    <form id="false-form" style="display: none">
+                        <div class="input-group">
+                            <input class="form-control" maxlength="250" disabled="disabled" placeholder="Type message..." autocomplete="off">
+                            <div class="input-group-btn">
+                                <button type="submit" disabled="disabled" class="btn btn-success"><i class="fa fa-send"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                    <small id="errorconn" class="text-red" style="display: none">Disconnected</small>
                 </div>
             </div>
         </div>
@@ -88,12 +114,14 @@
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 
     <script>
-        var socket = io('192.168.1.70:3000');
+        var socket = io('127.0.0.1:3000');
         var expo_id = '{{$univ->id}}';
         var user_id = '{{auth('panitia')->user()->id}}';
         var fullname = '{{auth('panitia')->user()->fullname}}';
         var baseurlimagepanitia = '{{route("panitia_photo_panitia_general", ["id" => ""])}}'
         var baseurlimagepeserta = '{{route("panitia_photo_peserta", ["id" => ""])}}'
+        scrolldown();
+
 
         $('form').submit(function(){
             var message = $('#msg').val();
@@ -130,10 +158,10 @@
                         '<span class="direct-chat-name pull-right text-blue">' +
                         msg.fullname +
                         '</span> ' +
-                        '<span class="direct-chat-timestamp pull-left">-</span> ' +
+                        '<span class="direct-chat-timestamp pull-left">'+msg.date+'</span> ' +
                         '</div> ' +
                         '<img class="direct-chat-img" src="'+baseurlimagepanitia+'/'+msg.user_id+'"> ' +
-                        '<div class="direct-chat-text text-right ">' +
+                        '<div class="direct-chat-text text-right " style="word-wrap: break-word;">' +
                         msg.chat +
                         '</div> ' +
                         '</div>'+
@@ -150,25 +178,57 @@
                         '<span class="direct-chat-name pull-left text-blue">' +
                         msg.fullname +
                         '</span> ' +
-                        '<span class="direct-chat-timestamp pull-right">-</span> ' +
+                        '<span class="direct-chat-timestamp pull-right">'+msg.date+'</span> ' +
                         '</div> ' +
                         '<img class="direct-chat-img" src="'+baseurlimagepanitia+'/'+msg.user_id+'"> ' +
-                        '<div class="direct-chat-text text-left ">' +
+                        '<div class="direct-chat-text text-left " style="word-wrap: break-word;">' +
                         msg.chat +
                         '</div> ' +
                         '</div>' +
                         '</div>' +
                         '</div>'
                 );
-
+                soundNotif();
             }
+            scrolldown();
+        });
+
+        socket.on('chat message peserta', function(msg){
+            console.log(msg);
+            $('#message-list').append(
+
+                    '<div class="row">' +
+                    '<div class="col-md-9">' +
+                    '<div class="direct-chat-msg">'+
+                    '<div class="direct-chat-info clearfix">' +
+                    '<span class="direct-chat-name pull-left text-green">' +
+                    msg.fullname +
+                    '</span> ' +
+                    '<span class="direct-chat-timestamp pull-right">'+msg.date+'</span> ' +
+                    '</div> ' +
+                    '<img class="direct-chat-img" src="'+baseurlimagepeserta+'/'+msg.user_id+'"> ' +
+                    '<div class="direct-chat-text text-left " style="word-wrap: break-word;">' +
+                    msg.chat +
+                    '</div> ' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>'
+            );
             soundNotif();
             scrolldown();
-
-//            $("#message-list").prop("scrollHeight")
-
+        });
 
 
+        socket.on('disconnect', function () {
+            $('#errorconn').show();
+            $('#form').hide();
+            $('#false-form').show();
+        });
+
+        socket.on('connect', function () {
+            $('#errorconn').hide();
+            $('#false-form').hide();
+            $('#form').show();
         });
 
         function scrolldown(){

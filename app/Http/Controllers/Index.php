@@ -11,4 +11,9 @@ class Index extends Controller
     public function index(){
         return view('peserta/page/login');
     }
+
+    public function notFound()
+    {
+        return view('not_found');
+    }
 }

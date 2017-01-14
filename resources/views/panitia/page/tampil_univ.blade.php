@@ -62,6 +62,7 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active">
+                        <h4><strong>{{strtoupper($univ->nama)}}</strong></h4>
                         {!! $univ->content !!}
                     </div>
                 </div>
