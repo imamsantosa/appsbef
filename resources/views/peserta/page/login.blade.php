@@ -6,7 +6,7 @@
 
 @section('additional-header')
     <script src='https://www.google.com/recaptcha/api.js'></script>
-    <link rel="stylesheet" href="{{url('plugins/FlipClock-master/compiled/flipclock.css')}}">
+    <link rel="stylesheet" href="{{url('plugins/FlipClock-master/compiled/flipclock.min.css')}}">
 @endsection
 
 @section('content')
