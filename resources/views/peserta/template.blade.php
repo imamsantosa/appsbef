@@ -79,11 +79,11 @@
 <!-- SlimScroll -->
 <script src="{{url('plugins/slimScroll/jquery.slimscroll.min.js')}}"></script>
 <!-- FastClick -->
-<script src="{{url('plugins/fastclick/fastclick.js')}}"></script>
+<script src="{{url('plugins/fastclick/fastclick.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{url('dist/js/app.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{url('dist/js/demo.js')}}"></script>
+<script src="{{url('dist/js/demo.min.js')}}"></script>
 @yield('additional-footer')
 
 </body>
