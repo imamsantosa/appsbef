@@ -142,15 +142,17 @@
 
 @section('additional-footer')
     <script src="{{url('plugins/FlipClock-master/compiled/flipclock.min.js')}}"></script>
+    {{--<script>--}}
+        {{--var date = new Date(2017, 0, 22);--}}
+        {{--var now = new Date();--}}
+        {{--var diff = (date.getTime()/1000) - (now.getTime()/1000);--}}
+        {{--var clock = $('#count-down').FlipClock(diff,{--}}
+            {{--clockFace: 'DailyCounter',--}}
+            {{--countdown: true,--}}
+            {{--language:'indonesian',--}}
+        {{--});--}}
+    {{--</script>--}}
     <script>
-        var date = new Date(2017, 0, 22);
-        var now = new Date();
-        var diff = (date.getTime()/1000) - (now.getTime()/1000);
-        var clock = $('#count-down').FlipClock(diff,{
-            clockFace: 'DailyCounter',
-            countdown: true,
-            language:'indonesian',
-        });
-//        var date=new Date(2017,0,22),now=new Date,diff=date.getTime()/1e3-now.getTime()/1e3,clock=$("#count-down").FlipClock(diff,{clockFace:"DailyCounter",countdown:!0});
+        var date=new Date(2017,0,22),now=new Date,diff=date.getTime()/1e3-now.getTime()/1e3,clock=$("#count-down").FlipClock(diff,{clockFace:"DailyCounter",countdown:!0,language:"indonesian"});
     </script>
 @endsection
