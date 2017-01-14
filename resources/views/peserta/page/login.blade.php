@@ -6,6 +6,7 @@
 
 @section('additional-header')
     <script src='https://www.google.com/recaptcha/api.js'></script>
+    <link rel="stylesheet" href="{{url('plugins/FlipClock-master/compiled/flipclock.css')}}">
 @endsection
 
 @section('content')
@@ -122,6 +123,26 @@
     </div>
 
     <div class="col-md-4">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Menuju Brebes Education Fair 2017</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="count-down" style="zoom: 0.45;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         @include('peserta.partials.contact')
     </div>
+@endsection
+
+@section('additional-footer')
+    <script src="{{url('plugins/FlipClock-master/compiled/flipclock.js')}}"></script>
+    <script>
+        var date=new Date(2017,0,22),now=new Date,diff=date.getTime()/1e3-now.getTime()/1e3,clock=$("#count-down").FlipClock(diff,{clockFace:"DailyCounter",countdown:!0});
+    </script>
 @endsection
