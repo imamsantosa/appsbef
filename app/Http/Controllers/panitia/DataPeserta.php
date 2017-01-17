@@ -133,13 +133,12 @@ class DataPeserta extends Controller
             ]);
         }
 
+        $ceknomor = \App\DataPeserta::where('jenis_tiket_id', $data->jenis_tiket_id)->orderBy('nomor_tiket', 'desc')->first();
 
-        $ceknomor = \App\DataPeserta::where('jenis_tiket_id', $data->jenis_tiket_id)->where('nomor_tiket', '<>', null)->count();
-
-        if($ceknomor <= 0){
+        if($ceknomor->nomor_tiket == null) {
             $nomortiket = 1;
-        } else{
-            $nomortiket = $ceknomor + 1;
+        } else {
+            $nomortiket = $ceknomor->nomor_tiket + 1;
         }
 
         $data->update([

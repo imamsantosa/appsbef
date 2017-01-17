@@ -14,67 +14,52 @@ class Export extends Controller
 {
     public function index()
     {
-//        $ceknomor = DataPeserta::where(['status_pembayaran_id' => 3, 'nomor_tiket' => null])->get();
-//        dd($ceknomor);
-
-        $data = DataPeserta::where(['status_pembayaran_id' => 3, 'nomor_tiket' => null])->get();
-
-        foreach($data as $d){
-            $ceknomor = DataPeserta::where('jenis_tiket_id', $d->jenis_tiket_id)->whereNotNull('nomor_tiket')->count();
-            echo 'nomor = '.$ceknomor .' - jenis - '.$d->jenis_tiket_id. ' - p id - '.$d->peserta_id.'<br>';
-            if($ceknomor <= 0){
-                $d->update([
-                    'nomor_tiket' => (1),
-                ]);
-                echo 'new number - 1 <br>';
-            } else{
-                $d->update([
-                    'nomor_tiket' => ($ceknomor + 1),
-                ]);
-                echo 'new number -'.($ceknomor + 1).'- to jt '.$d->jenis_tiket_id. ' p id - '.$d->peserta_id;
-            }
-//
-//            $d->update([
-//                'nomor_tiket' => $nomortiket,
-//            ]);
-        }
-
-//        $data = DataPeserta::where('status_pembayaran_id', 3)->get();
-//        foreach($data as $d){
-//
-////            $ceknomor = DataPeserta::where('jenis_tiket_id', $d->jenis_tiket_id)->where('nomor_tiket', '<>', null)->count();
-////            echo $ceknomor .'<br>';
-////            if($ceknomor <= 0){
-////                $nomortiket = 1;
-////            } else{
-////                $nomortiket = 0;
-////                $nomortiket = $ceknomor + 1;
-////            }
-////
-//            $d->update([
-//                'nomor_tiket' => null,
-//            ]);
-//        }
+//        $data = DataPeserta::where(['status_pembayaran_id' => 3, 'nomor_tiket' => null])->get();
 //
 //        foreach($data as $d){
-//
-//            $ceknomor = DataPeserta::where('jenis_tiket_id', $d->jenis_tiket_id)->where('nomor_tiket', '<>', null)->count();
-//            echo $ceknomor .'<br>';
+//            $ceknomor = DataPeserta::where('jenis_tiket_id', $d->jenis_tiket_id)->whereNotNull('nomor_tiket')->count();
+//            echo 'nomor = '.$ceknomor .' - jenis - '.$d->jenis_tiket_id. ' - p id - '.$d->peserta_id.'<br>';
 //            if($ceknomor <= 0){
-//                $nomortiket = 1;
+//                $d->update([
+//                    'nomor_tiket' => (1),
+//                ]);
+//                echo 'new number - 1 <br>';
 //            } else{
-//                $nomortiket = 0;
-//                $nomortiket = $ceknomor + 1;
+//                $d->update([
+//                    'nomor_tiket' => ($ceknomor + 1),
+//                ]);
+//                echo 'new number -'.($ceknomor + 1).'- to jt '.$d->jenis_tiket_id. ' p id - '.$d->peserta_id;
 //            }
 ////
-//            $d->update([
-//                'nomor_tiket' => $nomortiket,
-//            ]);
+////            $d->update([
+////                'nomor_tiket' => $nomortiket,
+////            ]);
 //        }
+
+        $data = DataPeserta::where('status_pembayaran_id', 3)->get();
+        foreach($data as $d){
+            $d->update([
+                'nomor_tiket' => null,
+            ]);
+        }
+
+        foreach($data as $ds){
+
+            $ceknomor = \App\DataPeserta::where('jenis_tiket_id', $ds->jenis_tiket_id)->orderBy('nomor_tiket', 'desc')->first();
+
+            if($ceknomor->nomor_tiket == null) {
+                $nomortiket = 1;
+            } else {
+                $nomortiket = $ceknomor->nomor_tiket + 1;
+            }
+
+            $ds->update([
+                'nomor_tiket' => $nomortiket,
+            ]);
+        }
 
         return "ok";
 
-//        return view('export');
     }
 
     private function generateKodePembayaran($jenis)
