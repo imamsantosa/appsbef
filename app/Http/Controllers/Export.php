@@ -14,8 +14,10 @@ class Export extends Controller
 {
     public function index()
     {
+        $ceknomor = DataPeserta::where('jenis_tiket_id', 3)->whereNotNull('nomor_tiket')->get();
+        dd($ceknomor);
 
-        $data = DataPeserta::where(['status_pembayaran_id' => 3, 'nomor_tiket' => null])->get();
+        /*$data = DataPeserta::where(['status_pembayaran_id' => 3, 'nomor_tiket' => null])->get();
 
         foreach($data as $d){
             $ceknomor = DataPeserta::where('jenis_tiket_id', $d->jenis_tiket_id)->where('nomor_tiket', '<>', null)->count();
@@ -30,7 +32,7 @@ class Export extends Controller
             $d->update([
                 'nomor_tiket' => $nomortiket,
             ]);
-        }
+        }*/
 //        $data = DataPeserta::where('status_pembayaran_id', 3)->get();
 //        foreach($data as $d){
 //
