@@ -14,25 +14,10 @@ class Export extends Controller
 {
     public function index()
     {
-        $data = DataPeserta::where('status_pembayaran_id', 3)->get();
-        foreach($data as $d){
 
-//            $ceknomor = DataPeserta::where('jenis_tiket_id', $d->jenis_tiket_id)->where('nomor_tiket', '<>', null)->count();
-//            echo $ceknomor .'<br>';
-//            if($ceknomor <= 0){
-//                $nomortiket = 1;
-//            } else{
-//                $nomortiket = 0;
-//                $nomortiket = $ceknomor + 1;
-//            }
-//
-            $d->update([
-                'nomor_tiket' => null,
-            ]);
-        }
+        $data = DataPeserta::where(['status_pembayaran_id' => 3, 'nomor_tiket' => null])->get();
 
         foreach($data as $d){
-
             $ceknomor = DataPeserta::where('jenis_tiket_id', $d->jenis_tiket_id)->where('nomor_tiket', '<>', null)->count();
             echo $ceknomor .'<br>';
             if($ceknomor <= 0){
@@ -41,11 +26,43 @@ class Export extends Controller
                 $nomortiket = 0;
                 $nomortiket = $ceknomor + 1;
             }
-//
+
             $d->update([
                 'nomor_tiket' => $nomortiket,
             ]);
         }
+//        $data = DataPeserta::where('status_pembayaran_id', 3)->get();
+//        foreach($data as $d){
+//
+////            $ceknomor = DataPeserta::where('jenis_tiket_id', $d->jenis_tiket_id)->where('nomor_tiket', '<>', null)->count();
+////            echo $ceknomor .'<br>';
+////            if($ceknomor <= 0){
+////                $nomortiket = 1;
+////            } else{
+////                $nomortiket = 0;
+////                $nomortiket = $ceknomor + 1;
+////            }
+////
+//            $d->update([
+//                'nomor_tiket' => null,
+//            ]);
+//        }
+//
+//        foreach($data as $d){
+//
+//            $ceknomor = DataPeserta::where('jenis_tiket_id', $d->jenis_tiket_id)->where('nomor_tiket', '<>', null)->count();
+//            echo $ceknomor .'<br>';
+//            if($ceknomor <= 0){
+//                $nomortiket = 1;
+//            } else{
+//                $nomortiket = 0;
+//                $nomortiket = $ceknomor + 1;
+//            }
+////
+//            $d->update([
+//                'nomor_tiket' => $nomortiket,
+//            ]);
+//        }
 
         return "ok";
 
