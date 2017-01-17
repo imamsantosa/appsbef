@@ -14,7 +14,7 @@ class Export extends Controller
 {
     public function index()
     {
-        $ceknomor = DataPeserta::where('jenis_tiket_id', 3)->whereNotNull('nomor_tiket')->get();
+        $ceknomor = DataPeserta::where('status_pembayaran_id', 3)->whereNotNull('nomor_tiket')->get();
         dd($ceknomor);
 
         /*$data = DataPeserta::where(['status_pembayaran_id' => 3, 'nomor_tiket' => null])->get();
