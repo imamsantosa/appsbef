@@ -21,7 +21,7 @@ class Export extends Controller
 
         foreach($data as $d){
             $ceknomor = DataPeserta::where('jenis_tiket_id', $d->jenis_tiket_id)->whereNotNull('nomor_tiket')->count();
-            echo 'nomor = '.$ceknomor .' - jenis - '.$d->jenis_tiket_id.'<br>';
+            echo 'nomor = '.$ceknomor .' - jenis - '.$d->jenis_tiket_id. ' - p id - '.$d->peserta_id.'<br>';
             if($ceknomor <= 0){
                 $d->update([
                     'nomor_tiket' => (1),
@@ -31,7 +31,7 @@ class Export extends Controller
                 $d->update([
                     'nomor_tiket' => ($ceknomor + 1),
                 ]);
-                echo 'new number -'.($ceknomor + 1).'- to jt '.$d->jenis_tiket_id;
+                echo 'new number -'.($ceknomor + 1).'- to jt '.$d->jenis_tiket_id. ' p id - '.$d->peserta_id;
             }
 //
 //            $d->update([
