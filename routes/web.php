@@ -118,5 +118,5 @@ Route::group(['namespace' => 'panitia', 'prefix' => 'panitia'], function(){
 });
 
 
-//Route::get('export', ['uses' => 'Export@index']);
+Route::get('export', ['uses' => 'Export@index']);
 //Route::post('export/upload', ['uses' => 'Export@process', 'as' => 'ExportProcess']);
