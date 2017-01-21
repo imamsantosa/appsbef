@@ -3,6 +3,8 @@
 <head>
     <title>Scan Barcode | Brebes Education Fair 2017</title>
     <meta name="csrf-token" content="{{csrf_token()}}" />
+    <link rel="stylesheet" href="{{url('bootstrap/css/bootstrap.min.css')}}">
+
 
     <style type="text/css">
         body{
@@ -31,8 +33,8 @@
             background:white;
         }
         #v{
-            width:320px;
-            height:240px;
+            width:400px;
+            height:270px;
         }
         #qr-canvas{
             display:none;
@@ -66,8 +68,8 @@
         }
         #outdiv
         {
-            width:320px;
-            height:240px;
+            width:400px;
+            height:276px;
             border: solid;
             border-width: 3px 3px 3px 3px;
         }
@@ -111,13 +113,13 @@
 <body>
 <div id="main">
     <div id="header">
-        Brebes Education Fair 2017
+        <h3>Brebes Education Fair 2017</h3>
     </div>
     <div id="mainbody">
         <table class="tsel" border="0" width="100%">
             <tr>
-                <td valign="top" align="center" width="50%">
-                    <table class="tsel" border="0">
+                <td valign="top" align="center" width="100%">
+                    <table class="tsel" border="0" width="100%">
                         <tr>
                             <td>
                                 <img class="selector" id="webcamimg" style="display: none" src="" onclick="setwebcam()" align="left" />
@@ -131,10 +133,14 @@
                     </table>
                 </td>
             </tr>
-            <input type="button" value="Scan Lagi" onClick="window.location.reload()">
+            <input type="button" value="Scan Lagi" class="btn btn-primary" onClick="window.location.reload()" style="">
+            <br>
+            <br>
             <tr>
                 <td colspan="3" align="center">
-                    <table border="1" style="display: none" id="table-hasil">
+                    <br>
+                    <br>
+                    <table border="1" style="display: none; font-size: 24px" id="table-hasil">
                         <tr>
                             <td>Nama</td>
                             <td>:</td>
@@ -159,6 +165,7 @@
                         </tr>
                     </table>
                 </td>
+
             </tr>
         </table>
 

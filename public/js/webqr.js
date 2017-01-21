@@ -124,6 +124,7 @@ function read(a)
     html+="<b>"+htmlEntities(a)+"</b><br><br>";
 
     // document.getElementById("result").innerHTML=html;
+
     console.log(a)
     cekdata(a)
 }
@@ -243,7 +244,7 @@ function setwebcam2(options)
 
 function setimg()
 {
-    document.getElementById("result").innerHTML="";
+    // document.getElementById("result").innerHTML="";
     if(stype==2)
         return;
     document.getElementById("outdiv").innerHTML = imghtml;
