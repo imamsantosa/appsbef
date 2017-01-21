@@ -120,7 +120,7 @@
                     <table class="tsel" border="0">
                         <tr>
                             <td>
-                                <img class="selector" id="webcamimg" style="display: none" src="vid.png" onclick="setwebcam()" align="left" />
+                                <img class="selector" id="webcamimg" style="display: none" src="" onclick="setwebcam()" align="left" />
                             </td>
                         <tr>
                             <td colspan="2" align="center">
