@@ -60,10 +60,11 @@ Route::group(['namespace' => 'panitia', 'prefix' => 'panitia'], function(){
     Route::get('auth/login', ['uses' => 'AuthenticationPanitia@login', 'as' => 'panitia_login']);
     Route::post('auth/login', ['uses' => 'AuthenticationPanitia@loginProses', 'as' => 'panitia_login_proses']);
     Route::get('auth/logout', ['uses' => 'AuthenticationPanitia@logout', 'as' => 'panitia_logout']);
+    Route::get('photo-peserta/{id}', ['uses'=>'Panitia@photoPeserta', 'as' => 'panitia_photo_peserta']);
+
 
     Route::group(['middleware' => 'auth.panitia'], function(){
         Route::get('photo-profil', ['uses'=>'Panitia@photoProfile', 'as' => 'panitia_photo_profile']);
-        Route::get('photo-peserta/{id}', ['uses'=>'Panitia@photoPeserta', 'as' => 'panitia_photo_peserta']);
         Route::get('photo-panitia/{id}', ['uses'=>'Panitia@photoPanitia', 'as' => 'panitia_photo_panitia_general']);
 
         Route::get('/', ['uses' => 'Panitia@home', 'as' => 'panitia_home']);
@@ -116,6 +117,9 @@ Route::group(['namespace' => 'panitia', 'prefix' => 'panitia'], function(){
         Route::post('data-expo/list-data', ['uses' => 'DataExpo@dataAll', 'as' => 'panitia_data_expo_all']);
     });
 });
+
+Route::get('barcode', ['uses' => 'Barcode@scan', 'as'=>'panitia-barcode']);
+Route::get('barcode/proses', ['uses' => 'Barcode@process', 'as' => 'panitia_barcode_process']);
 
 
 //Route::get('export', ['uses' => 'Export@index']);
