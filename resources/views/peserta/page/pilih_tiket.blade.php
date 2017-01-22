@@ -24,9 +24,9 @@
                                 <select class="form-control" name="panlok" id="panlok">
                                     <option value="-">-- Pilih Lokasi Panlok --</option>
                                     @foreach($panlok as $p)
-                                        @if($p->id != 1)
+{{--                                        @if($p->id != 1)--}}
                                         <option value="{{$p->id}}">{{$p->nama}}</option>
-                                        @endif
+                                        {{--@endif--}}
                                     @endforeach
                                 </select>
                             </div>
