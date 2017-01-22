@@ -120,6 +120,9 @@ Route::group(['namespace' => 'panitia', 'prefix' => 'panitia'], function(){
 
 Route::get('barcode', ['uses' => 'Barcode@scan', 'as'=>'panitia-barcode']);
 Route::get('barcode/proses', ['uses' => 'Barcode@process', 'as' => 'panitia_barcode_process']);
+Route::get('pengumuman', function(){
+    return view('pengumuman');
+});
 
 
 //Route::get('export', ['uses' => 'Export@index']);
