@@ -10,6 +10,10 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/pengumuman">Pengumuman Hasil</a></li>
+
+                </ul>
                 @if(auth('peserta')->check())
 
                 <ul class="nav navbar-nav">
