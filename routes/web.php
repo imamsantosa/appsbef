@@ -123,6 +123,10 @@ Route::get('barcode/proses', ['uses' => 'Barcode@process', 'as' => 'panitia_barc
 Route::get('pengumuman', function(){
     return view('pengumuman');
 });
+Route::get('pengumuman/selatan', function(){
+    return view('pengumuman_selatan');
+});
+
 
 
 //Route::get('export', ['uses' => 'Export@index']);
